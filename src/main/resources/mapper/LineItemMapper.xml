@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.hzero.test1.infra.mapper.LineItemMapper">
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap id="BaseResultMap" type="org.hzero.test1.domain.entity.LineItem">
+        <result column="rfx_line_item_id" property="rfxLineItemId" jdbcType="DECIMAL"/>
+        <result column="rfx_header_id" property="rfxHeaderId" jdbcType="DECIMAL"/>
+        <result column="rfx_line_item_num" property="rfxLineItemNum" jdbcType="DECIMAL"/>
+        <result column="tenant_id" property="tenantId" jdbcType="DECIMAL"/>
+        <result column="ou_id" property="ouId" jdbcType="DECIMAL"/>
+        <result column="inv_organization_id" property="invOrganizationId" jdbcType="DECIMAL"/>
+        <result column="item_id" property="itemId" jdbcType="DECIMAL"/>
+        <result column="item_code" property="itemCode" jdbcType="VARCHAR"/>
+        <result column="item_name" property="itemName" jdbcType="VARCHAR"/>
+        <result column="item_category_id" property="itemCategoryId" jdbcType="DECIMAL"/>
+        <result column="delivery_address" property="deliveryAddress" jdbcType="VARCHAR"/>
+        <result column="item_remark" property="itemRemark" jdbcType="VARCHAR"/>
+        <result column="freight_included_flag" property="freightIncludedFlag" jdbcType="DECIMAL"/>
+        <result column="rfx_quantity" property="rfxQuantity" jdbcType="DECIMAL"/>
+        <result column="uom_id" property="uomId" jdbcType="DECIMAL"/>
+        <result column="tax_included_flag" property="taxIncludedFlag" jdbcType="DECIMAL"/>
+        <result column="tax_id" property="taxId" jdbcType="DECIMAL"/>
+        <result column="tax_rate" property="taxRate" jdbcType="DECIMAL"/>
+        <result column="quotation_range" property="quotationRange" jdbcType="DECIMAL"/>
+        <result column="max_limit_price" property="maxLimitPrice" jdbcType="DECIMAL"/>
+        <result column="min_limit_price" property="minLimitPrice" jdbcType="DECIMAL"/>
+        <result column="cost_price" property="costPrice" jdbcType="DECIMAL"/>
+        <result column="sample_requested_flag" property="sampleRequestedFlag" jdbcType="DECIMAL"/>
+        <result column="demand_date" property="demandDate" jdbcType="DATE"/>
+        <result column="round_flag" property="roundFlag" jdbcType="DECIMAL"/>
+        <result column="current_round_number" property="currentRoundNumber" jdbcType="DECIMAL"/>
+        <result column="finished_flag" property="finishedFlag" jdbcType="DECIMAL"/>
+        <result column="quotation_start_date" property="quotationStartDate" jdbcType="DATE"/>
+        <result column="quotation_end_date" property="quotationEndDate" jdbcType="DATE"/>
+        <result column="ladder_inquiry_flag" property="ladderInquiryFlag" jdbcType="DECIMAL"/>
+        <result column="attachment_uuid" property="attachmentUuid" jdbcType="VARCHAR"/>
+        <result column="object_version_number" property="objectVersionNumber" jdbcType="DECIMAL"/>
+        <result column="creation_date" property="creationDate" jdbcType="DATE"/>
+        <result column="created_by" property="createdBy" jdbcType="DECIMAL"/>
+        <result column="last_updated_by" property="lastUpdatedBy" jdbcType="DECIMAL"/>
+        <result column="last_update_date" property="lastUpdateDate" jdbcType="DATE"/>
+        <result column="selection_strategy" property="selectionStrategy" jdbcType="VARCHAR"/>
+        <result column="defer_count" property="deferCount" jdbcType="DECIMAL"/>
+        <result column="pr_header_id" property="prHeaderId" jdbcType="DECIMAL"/>
+        <result column="pr_line_id" property="prLineId" jdbcType="DECIMAL"/>
+        <result column="pr_num" property="prNum" jdbcType="VARCHAR"/>
+        <result column="pr_line_num" property="prLineNum" jdbcType="DECIMAL"/>
+    </resultMap>
+    <select id="getTenantId" parameterType="java.lang.Long" resultType="java.lang.Long">
+        select t
+            enant_id from ssrc_rfx_line_item
+        where
+            tenant_id = #{tenantId}
+    </select>
+</mapper>

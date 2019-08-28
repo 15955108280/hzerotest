@@ -1,0 +1,74 @@
+spring:
+  application:
+    name: hzero-test
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:dev}
+  cloud:
+      config:
+        fail-fast: false
+        # 是否启用配置中心
+        enabled: ${SPRING_CLOUD_CONFIG_ENABLED:true}
+        # 配置中心地址
+        uri: ${SPRING_CLOUD_CONFIG_URI:http://dev.hzero.org:8010}
+        retry:
+          # 最大重试次数
+          maxAttempts: 6
+          multiplier: 1.1
+          # 重试间隔时间
+          maxInterval: 2000
+        # 标签
+        label: ${SPRING_CLOUD_CONFIG_LABEL:}
+      inetutils:
+        # 本地多网卡时，忽略回环网卡
+        ignored-interfaces[0]: lo
+        # 本地多网卡时，选择注册的网段
+        # preferred-networks[0]: 192.168
+        preferred-networks[0]: 10.16
+  redis:
+    host: redis.hzero.org
+    port: 6379
+    database: 1
+
+server:
+  port: 8088
+management:
+  server:
+    # 监控管理端口
+    port: 8089
+  endpoints:
+    web:
+      exposure:
+        # 需要开放的 Actuator 监控端点，默认开放所有
+        include: '*'
+hystrix:
+  threadpool:
+    default:
+      # 执行命令线程池的核心线程数，也是命令执行的最大并发量
+      # 默认10
+      coreSize: 1000
+      # 最大执行线程数
+      maximumSize: 1000
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            # HystrixCommand 执行的超时时间，超时后进入降级处理逻辑。一个接口，理论的最佳响应速度应该在200ms以内，或者慢点的接口就几百毫秒。
+            # 默认 1000 毫秒，最高设置 2000足矣。如果超时，首先看能不能优化接口相关业务、SQL查询等，不要盲目加大超时时间，否则会导致线程堆积过多，hystrix 线程池卡死，最终服务不可用。
+            timeoutInMilliseconds: ${HYSTRIX_COMMAND_TIMEOUT_IN_MILLISECONDS:40000}
+ribbon:
+  # 客户端读取超时时间，超时时间要小于Hystrix的超时时间，否则重试机制就无意义了
+  ReadTimeout: ${RIBBON_READ_TIMEOUT:30000}
+
+  # 客户端连接超时时间
+  ConnectTimeout: ${RIBBON_CONNECT_TIMEOUT:3000}
+  # 访问实例失败(超时)，允许自动重试，设置重试次数，失败后会更换实例访问，请一定确保接口的幂等性，否则重试可能导致数据异常。
+  OkToRetryOnAllOperations: true
+  MaxAutoRetries: 1
+  MaxAutoRetriesNextServer: 1
+hzero:
+  scheduler:
+    auto-register: false
+#导入服务自动建表
+  import:
+    init-table: true

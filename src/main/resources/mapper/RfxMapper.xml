@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.hzero.test1.infra.mapper.RfxMapper">
+    <resultMap id="BaseResultMap" type="org.hzero.test1.api.dto.RfxSummaryDTO">
+        <result column="rfx_header_id" property="rfxHeaderId" jdbcType="DECIMAL"/>
+        <result column="rfx_num" property="rfxNum" jdbcType="VARCHAR"/>
+        <result column="rfx_status" property="rfxStatus" jdbcType="VARCHAR"/>
+        <result column="rfx_title" property="rfxTitle" jdbcType="VARCHAR"/>
+        <result column="auction_direction" property="auctionDirection" jdbcType="VARCHAR"/>
+        <collection property="itemSummaryDTOList" ofType="org.hzero.test1.api.dto.ItemSummaryDTO">
+            <result column="rfx_line_item_id" property="rfxLineItemId" jdbcType="DECIMAL"/>
+            <result column="rfx_line_item_num" property="rfxLineItemNum" jdbcType="DECIMAL"/>
+            <result column="tenant_id" property="tenantId" jdbcType="DECIMAL"/>
+            <result column="item_code" property="itemCode" jdbcType="VARCHAR"/>
+            <result column="item_name" property="itemName" jdbcType="VARCHAR"/>
+            <result column="delivery_address" property="deliveryAddress" jdbcType="VARCHAR"/>
+            <result column="item_remark" property="itemRemark" jdbcType="VARCHAR"/>
+        </collection>
+    </resultMap>
+
+    <select id="list" parameterType="org.hzero.test1.api.dto.QueryDTO" resultMap="BaseResultMap">
+        select
+            h.rfx_header_id, h.rfx_num, h.rfx_status, h.rfx_title, h.auction_direction,
+            i.rfx_line_item_id, i.rfx_line_item_num, i.tenant_id, i.item_code, i.item_name, i.delivery_address,
+            i.item_remark
+        from ssrc_rfx_header h LEFT JOIN ssrc_rfx_line_item i on i.rfx_header_id = h.rfx_header_id
+            where h.tenant_id = #{tenantId}
+        <if test="rfxHeaderId != null">
+            and h.rfx_header_id = #{rfxHeaderId}
+        </if>
+        <if test="rfxNum != null">
+            and h.rfx_num = #{rfxNum}
+        </if>
+        <if test="rfxStatus != null">
+            and h.rfx_status = #{rfxStatus}
+        </if>
+        <if test="rfxTitle != null">
+            and h.rfx_title = #{rfxTitle}
+        </if>
+        <if test="auctionDirection != null">
+            and h.auction_direction = #{auctionDirection}
+        </if>
+        <if test="rfxLineItemId != null">
+            and i.rfx_line_item_id = #{rfxLineItemId}
+        </if>
+        <if test="rfxLineItemNum != null">
+            and i.rfx_line_item_num = #{rfxLineItemNum}
+        </if>
+        <if test="tenantId != null">
+            and i.tenant_id = #{tenantId}
+        </if>
+        <if test="itemCode != null">
+            and i.item_code = #{itemCode}
+        </if>
+        <if test="itemName != null">
+            and i.item_name = #{itemName}
+        </if>
+        <if test="deliveryAddress != null">
+            and i.delivery_address = #{deliveryAddress}
+        </if>
+        <if test="itemRemark != null">
+            and i.item_remark = #{itemRemark}
+        </if>
+
+    </select>
+</mapper>
