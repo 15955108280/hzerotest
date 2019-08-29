@@ -105,6 +105,9 @@ public class Header extends AuditDomain {
 		this.tenantId = tenantId;
 		this.rfxHeaderId = rfxHeaderId;
 	}
+	public Header(Long tenantId){
+		this.tenantId = tenantId;
+	}
 	public Header(){
 
 	}

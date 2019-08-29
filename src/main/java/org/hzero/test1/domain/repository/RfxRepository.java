@@ -17,5 +17,5 @@ public interface RfxRepository {
 	 * @param queryDTO 查询条件
 	 * @return 分页查询结果
 	 */
-	Page<RfxSummaryDTO> list(PageRequest pageRequest, QueryDTO queryDTO);
+	Page<RfxSummaryDTO> listLineItem(PageRequest pageRequest, QueryDTO queryDTO);
 }

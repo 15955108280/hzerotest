@@ -18,7 +18,7 @@ public interface RfxService {
 	 * 创建询价单
 	 * @param rfxDTO 询价单
 	 */
-	void create(RfxDTO rfxDTO);
+	void createLineItem(RfxDTO rfxDTO,Long tenantId);
 
 	/**
 	 * 更新询价单
@@ -37,5 +37,5 @@ public interface RfxService {
 	 * @param tenantId 租户id
 	 * @return 分页查询结果
 	 */
-	Page<RfxSummaryDTO> list(PageRequest pageRequest, QueryDTO queryDTO, Long tenantId);
+	Page<RfxSummaryDTO> listLineItem(PageRequest pageRequest, QueryDTO queryDTO, Long tenantId);
 }

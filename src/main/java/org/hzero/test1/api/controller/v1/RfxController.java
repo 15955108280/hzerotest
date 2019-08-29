@@ -24,6 +24,7 @@ import org.hzero.test1.domain.repository.RfxRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import springfox.documentation.annotations.ApiIgnore;
 
 /**
  * description
@@ -43,27 +44,26 @@ public class RfxController {
     RfxRepository rfxRepository;
     @Autowired
     RfxService rfxService;
-	@Autowired
-	LineItemService lineItemService;
+    @Autowired
+    LineItemService lineItemService;
 
     @ApiOperation(value = "查询询价")
     @Permission(level = ResourceLevel.ORGANIZATION)
     @GetMapping
-    @ProcessLovValue(targetField = BaseConstants.FIELD_BODY) // 值集翻译
+    @ProcessLovValue(targetField = BaseConstants.FIELD_BODY)
     public ResponseEntity<Page<RfxSummaryDTO>> listLineItem(
-			@ApiParam(value = "租户id",required = true)@PathVariable("organizationId") Long tenantId,
-			QueryDTO queryDTO,
-			PageRequest pageRequest) {
-        return Results.success(rfxService.list(pageRequest, queryDTO,tenantId));
+                    @ApiParam(value = "租户id", required = true) @PathVariable("organizationId") Long tenantId,
+                    QueryDTO queryDTO, @ApiIgnore PageRequest pageRequest) {
+        return Results.success(rfxService.listLineItem(pageRequest, queryDTO, tenantId));
     }
 
     @ApiOperation(value = "新增询价")
     @Permission(level = ResourceLevel.ORGANIZATION)
     @PostMapping
     public ResponseEntity<RfxDTO> createLineItem(
-			@ApiParam(value = "租户id",required = true)@PathVariable("organizationId") Long tenantId,
-			@ApiParam(value = "新增实体类",required = true)@RequestBody RfxDTO rfxDTO) {
-        rfxService.create(rfxDTO);
+                    @ApiParam(value = "租户id", required = true) @PathVariable("organizationId") Long tenantId,
+                    @ApiParam(value = "新增实体类", required = true) @RequestBody RfxDTO rfxDTO) {
+        rfxService.createLineItem(rfxDTO,tenantId);
         return Results.success(rfxDTO);
     }
 
@@ -71,9 +71,9 @@ public class RfxController {
     @Permission(level = ResourceLevel.ORGANIZATION)
     @DeleteMapping("/{rfxHeaderId}")
     public ResponseEntity<Header> deleteLineItem(
-    		@ApiParam(value = "租户id",required = true)@PathVariable("organizationId") Long tenantId,
-			@ApiParam(value = "物料单头id",required = true)@PathVariable Long rfxHeaderId) {
-		lineItemService.deleteLineItem(tenantId,rfxHeaderId);
+                    @ApiParam(value = "租户id", required = true) @PathVariable("organizationId") Long tenantId,
+                    @ApiParam(value = "物料单头id", required = true) @PathVariable Long rfxHeaderId) {
+        lineItemService.deleteLineItem(tenantId, rfxHeaderId);
         return Results.success();
     }
 
@@ -81,10 +81,10 @@ public class RfxController {
     @Permission(level = ResourceLevel.ORGANIZATION)
     @PutMapping("/{rfxLineItemId}")
     public ResponseEntity<LineItem> updateLineItem(
-    		@ApiParam(value = "租户Id",required = true)@PathVariable("organizationId") Long tenantId,
-			@ApiParam(value = "订单行Id",required = true)@PathVariable Long rfxLineItemId,
-			@ApiParam(value = "订单行Id",required = true)@RequestParam String itemRemark,
-			@ApiParam(value = "订单行Id",required = true)@RequestParam String itemName) {
-        return Results.success(rfxService.updateLineItem(tenantId,rfxLineItemId,itemRemark,itemName));
+                    @ApiParam(value = "租户Id", required = true) @PathVariable("organizationId") Long tenantId,
+                    @ApiParam(value = "订单行Id", required = true) @PathVariable Long rfxLineItemId,
+                    @ApiParam(value = "订单行Id", required = true) @RequestParam String itemRemark,
+                    @ApiParam(value = "订单行Id", required = true) @RequestParam String itemName) {
+        return Results.success(rfxService.updateLineItem(tenantId, rfxLineItemId, itemRemark, itemName));
     }
 }

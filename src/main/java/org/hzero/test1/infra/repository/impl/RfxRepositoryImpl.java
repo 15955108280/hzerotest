@@ -20,7 +20,7 @@ public class RfxRepositoryImpl implements RfxRepository {
 	@Autowired
 	RfxMapper rfxMapper;
 	@Override
-	public Page<RfxSummaryDTO> list(PageRequest pageRequest, QueryDTO queryDTO) {
+	public Page<RfxSummaryDTO> listLineItem(PageRequest pageRequest, QueryDTO queryDTO) {
 		return PageHelper.doPage(pageRequest,() -> rfxMapper.list(queryDTO));
 	}
 }

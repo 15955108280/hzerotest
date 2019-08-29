@@ -36,8 +36,9 @@ public class LineItemController extends BaseController {
     @ApiOperation(value = "询价单物料料⾏行行列表")
     @Permission(level = ResourceLevel.ORGANIZATION)
     @GetMapping
-    public ResponseEntity<Page<LineItem>> list(LineItem lineItem, @ApiIgnore @SortDefault(value = LineItem.FIELD_RFX_LINE_ITEM_ID,
-            direction = Sort.Direction.DESC) PageRequest pageRequest) {
+    public ResponseEntity<Page<LineItem>> list(LineItem lineItem,
+                    @ApiIgnore @SortDefault(value = LineItem.FIELD_RFX_LINE_ITEM_ID,
+                                    direction = Sort.Direction.DESC) PageRequest pageRequest) {
         Page<LineItem> list = lineItemRepository.pageAndSort(pageRequest, lineItem);
         return Results.success(list);
     }

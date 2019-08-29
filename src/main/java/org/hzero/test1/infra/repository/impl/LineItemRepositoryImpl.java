@@ -18,10 +18,6 @@ import java.util.List;
 public class LineItemRepositoryImpl extends BaseRepositoryImpl<LineItem> implements LineItemRepository {
 	@Autowired
 	LineItemMapper lineItemMapper;
-	@Override
-	public void insertList(List<LineItem> lineItemList) {
-		lineItemMapper.insertList(lineItemList);
-	}
 
 	@Override
 	public Long getTenantId(Long tenantId) {

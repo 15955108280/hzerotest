@@ -6,11 +6,13 @@ import org.hzero.test1.api.dto.QueryDTO;
 import org.hzero.test1.api.dto.RfxDTO;
 import org.hzero.test1.api.dto.RfxSummaryDTO;
 import org.hzero.test1.app.service.RfxService;
+import org.hzero.test1.domain.entity.Header;
 import org.hzero.test1.domain.entity.LineItem;
 import org.hzero.test1.domain.repository.HeaderRepository;
 import org.hzero.test1.domain.repository.LineItemRepository;
 import org.hzero.test1.domain.repository.RfxRepository;
 import org.hzero.test1.domain.service.LineItemDoMainService;
+import org.hzero.test1.infra.constant.Instance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -39,19 +41,21 @@ public class RfxServiceImpl implements RfxService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-    public void create(RfxDTO rfxDTO) {
-        Long rfxHeaderId = headerRepository.insertGetId(rfxDTO.getHeader());
+    public void createLineItem(RfxDTO rfxDTO,Long tenantId) {
+        Header header = new Header(tenantId);
+        Long rfxHeaderId = headerRepository.insertGetId(header);
         List<LineItem> lineItemList = rfxDTO.getLineItem();
         for (LineItem lineItem : lineItemList) {
             lineItem.setRfxHeaderId(rfxHeaderId);
+            lineItem.setTenantId(tenantId);
         }
-
         lineItemRepository.batchInsert(lineItemList);
     }
-	@Override
-    public LineItem  updateLineItem(Long tenantId,Long rfxLineItemId, String itemRemark, String itemName) {
-        Assert.isTrue(lineItemDoMainService.lineItemIsNull(tenantId,rfxLineItemId),"该物料行信息不存在");
-       	LineItem lineItem = new LineItem(rfxLineItemId,itemRemark,itemName);
+
+    @Override
+    public LineItem updateLineItem(Long tenantId, Long rfxLineItemId, String itemRemark, String itemName) {
+        Assert.isTrue(lineItemDoMainService.lineItemIsNull(tenantId, rfxLineItemId), Instance.ERROR_LINEITEM_NOT_FOUND);
+        LineItem lineItem = new LineItem(rfxLineItemId, itemRemark, itemName);
         LineItem oldLineItem = lineItemRepository.selectByPrimaryKey(lineItem);
         lineItem.setObjectVersionNumber(oldLineItem.getObjectVersionNumber());
         lineItemRepository.updateByPrimaryKeySelective(lineItem);
@@ -59,8 +63,8 @@ public class RfxServiceImpl implements RfxService {
     }
 
     @Override
-    public Page<RfxSummaryDTO> list(PageRequest pageRequest, QueryDTO queryDTO, Long tenantId) {
+    public Page<RfxSummaryDTO> listLineItem(PageRequest pageRequest, QueryDTO queryDTO, Long tenantId) {
         queryDTO.setTenantId(tenantId);
-        return rfxRepository.list(pageRequest,queryDTO);
+        return rfxRepository.listLineItem(pageRequest, queryDTO);
     }
 }

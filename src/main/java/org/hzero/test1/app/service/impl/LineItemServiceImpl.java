@@ -4,6 +4,7 @@ import org.hzero.test1.app.service.LineItemService;
 import org.hzero.test1.domain.entity.LineItem;
 import org.hzero.test1.domain.repository.LineItemRepository;
 import org.hzero.test1.domain.service.HeaderDoMainService;
+import org.hzero.test1.infra.constant.Instance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
@@ -22,7 +23,7 @@ public class LineItemServiceImpl implements LineItemService {
 
 	@Override
 	public void deleteLineItem(Long tenantId, Long rfxHeaderId) {
-		Assert.isTrue(headerDoMainService.headerIsNull(tenantId,rfxHeaderId),"该物料行信息不存在");
+		Assert.isTrue(headerDoMainService.headerIsNull(tenantId,rfxHeaderId), Instance.ERROR_HEADER_NOT_FOUND);
 		LineItem lineItem = new LineItem(rfxHeaderId);
 		lineItemRepository.delete(lineItem);
 	}
