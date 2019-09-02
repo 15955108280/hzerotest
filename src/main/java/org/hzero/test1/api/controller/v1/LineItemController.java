@@ -1,9 +1,12 @@
 package org.hzero.test1.api.controller.v1;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiParam;
 import org.hzero.core.util.Results;
 import org.hzero.core.base.BaseController;
 import org.hzero.test1.api.config.SwaggerApiConfig;
+import org.hzero.test1.app.service.ItemSupAssignService;
+import org.hzero.test1.domain.entity.ItemSupAssign;
 import org.hzero.test1.domain.entity.LineItem;
 import org.hzero.test1.domain.repository.LineItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +24,7 @@ import io.swagger.annotations.ApiOperation;
 import springfox.documentation.annotations.ApiIgnore;
 
 /**
- * 询价单物料料⾏行行 管理 API
+ * 询价单物料行管理 API
  *
  * @author xingpeng.yang@hand-china.com 2019-08-26 11:38:00
  */
@@ -32,6 +35,8 @@ public class LineItemController extends BaseController {
 
     @Autowired
     private LineItemRepository lineItemRepository;
+    @Autowired
+    private ItemSupAssignService itemSupAssignService;
 
     @ApiOperation(value = "询价单物料料⾏行行列表")
     @Permission(level = ResourceLevel.ORGANIZATION)
@@ -78,4 +83,13 @@ public class LineItemController extends BaseController {
         return Results.success();
     }
 
+    @ApiOperation(value = "物料行分配")
+    @Permission(level = ResourceLevel.ORGANIZATION)
+    @PostMapping
+    public ResponseEntity<?> assignLineItem(
+                    @ApiParam(value = "租户id", required = true) @PathVariable("organizationId") Long tenantId,
+                    @RequestBody ItemSupAssign itemSupAssign) {
+        itemSupAssign.setTenantId(tenantId);
+        return Results.success( itemSupAssignService.assignLineItem(itemSupAssign));
+    }
 }

@@ -82,8 +82,7 @@ public class RfxSummaryDTO {
 				", rfxStatus='" + rfxStatus + '\'' +
 				", rfxTitle='" + rfxTitle + '\'' +
 				", auctionDirection='" + auctionDirection + '\'' +
-				", itemSummaryDTOList=" + itemSummaryDTOList.get(0).toString()
-				+
+				", itemSummaryDTOList=" + itemSummaryDTOList +
 				'}';
 	}
 }

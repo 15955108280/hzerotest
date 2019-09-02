@@ -35,9 +35,5 @@ public class Test {
 //		}
 	}
 
-	@org.junit.Test
-	public void testcreate(){
-		Header header = new Header();
-		headerMapper.insertGetId(header);
-	}
+
 }

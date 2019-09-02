@@ -22,7 +22,6 @@ public class HeaderRepositoryImpl extends BaseRepositoryImpl<Header> implements 
 	@Override
 	public Long  insertGetId(Header header) {
 		Long rfxHeaderId = Long.valueOf(headerMapper.insert(header));
-		//headerMapper.insertGetId(header);
 		return header.getRfxHeaderId();
 	}
 

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.hzero.supplier.infra.mapper.LineSupplierMapper">
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap id="BaseResultMap" type="org.hzero.test1.domain.entity.LineSupplier">
+        <result column="rfx_line_supplier_id" property="rfxLineSupplierId" jdbcType="DECIMAL"/>
+        <result column="rfx_header_id" property="rfxHeaderId" jdbcType="DECIMAL"/>
+        <result column="tenant_id" property="tenantId" jdbcType="DECIMAL"/>
+        <result column="supplier_tenant_id" property="supplierTenantId" jdbcType="DECIMAL"/>
+        <result column="supplier_company_id" property="supplierCompanyId" jdbcType="DECIMAL"/>
+        <result column="supplier_company_name" property="supplierCompanyName" jdbcType="VARCHAR"/>
+        <result column="supplier_contact_id" property="supplierContactId" jdbcType="DECIMAL"/>
+        <result column="contact_name" property="contactName" jdbcType="VARCHAR"/>
+        <result column="contact_mail" property="contactMail" jdbcType="VARCHAR"/>
+        <result column="contact_mobilephone" property="contactMobilephone" jdbcType="VARCHAR"/>
+        <result column="contact_telephone" property="contactTelephone" jdbcType="VARCHAR"/>
+        <result column="feedback_status" property="feedbackStatus" jdbcType="VARCHAR"/>
+        <result column="feedback_remark" property="feedbackRemark" jdbcType="VARCHAR"/>
+        <result column="read_flag" property="readFlag" jdbcType="DECIMAL"/>
+        <result column="abandon_remark" property="abandonRemark" jdbcType="VARCHAR"/>
+        <result column="object_version_number" property="objectVersionNumber" jdbcType="DECIMAL"/>
+        <result column="creation_date" property="creationDate" jdbcType="DATE"/>
+        <result column="created_by" property="createdBy" jdbcType="DECIMAL"/>
+        <result column="last_updated_by" property="lastUpdatedBy" jdbcType="DECIMAL"/>
+        <result column="last_update_date" property="lastUpdateDate" jdbcType="DATE"/>
+        <result column="append_flag" property="appendFlag" jdbcType="DECIMAL"/>
+        <result column="append_remark" property="appendRemark" jdbcType="VARCHAR"/>
+    </resultMap>
+</mapper>

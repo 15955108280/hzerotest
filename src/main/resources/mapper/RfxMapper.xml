@@ -24,7 +24,7 @@
             i.rfx_line_item_id, i.rfx_line_item_num, i.tenant_id, i.item_code, i.item_name, i.delivery_address,
             i.item_remark
         from ssrc_rfx_header h LEFT JOIN ssrc_rfx_line_item i on i.rfx_header_id = h.rfx_header_id
-            where h.tenant_id = #{tenantId}
+        where h.tenant_id = #{tenantId}
         <if test="rfxHeaderId != null">
             and h.rfx_header_id = #{rfxHeaderId}
         </if>
@@ -62,5 +62,14 @@
             and i.item_remark = #{itemRemark}
         </if>
 
+    </select>
+
+    <select id="listRfxBySupplier" resultType="org.hzero.test1.api.dto.RfxBySupplierDTO">
+        select
+            h.quotation_start_date, h.quotation_end_date, h.rfx_num, h.rfx_title, h.rfx_status,s.feedback_status
+        from ssrc_rfx_header h, ssrc_rfx_line_supplier s
+        where
+            h.rfx_header_id = s.rfx_header_id
+            and q.supplier_tenant_id = #{tenantId}
     </select>
 </mapper>

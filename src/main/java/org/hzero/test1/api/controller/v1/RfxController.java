@@ -12,6 +12,7 @@ import org.hzero.core.base.BaseConstants;
 import org.hzero.core.util.Results;
 import org.hzero.test1.api.config.SwaggerApiConfig;
 import org.hzero.test1.api.dto.QueryDTO;
+import org.hzero.test1.api.dto.RfxBySupplierDTO;
 import org.hzero.test1.api.dto.RfxDTO;
 import org.hzero.test1.api.dto.RfxSummaryDTO;
 import org.hzero.test1.app.service.LineItemService;
@@ -63,7 +64,7 @@ public class RfxController {
     public ResponseEntity<RfxDTO> createLineItem(
                     @ApiParam(value = "租户id", required = true) @PathVariable("organizationId") Long tenantId,
                     @ApiParam(value = "新增实体类", required = true) @RequestBody RfxDTO rfxDTO) {
-        rfxService.createLineItem(rfxDTO,tenantId);
+        rfxService.createLineItem(rfxDTO, tenantId);
         return Results.success(rfxDTO);
     }
 
@@ -87,4 +88,31 @@ public class RfxController {
                     @ApiParam(value = "订单行Id", required = true) @RequestParam String itemName) {
         return Results.success(rfxService.updateLineItem(tenantId, rfxLineItemId, itemRemark, itemName));
     }
+
+    @ApiOperation(value = "询价单发布")
+    @Permission(level = ResourceLevel.ORGANIZATION)
+    @PutMapping("/{rfxLineItemId}")
+    public ResponseEntity<Header> publishRfx(
+                    @ApiParam(value = "租户Id", required = true) @PathVariable("organizationId") Long tenantId,
+                    @ApiParam(value = "订单行Id", required = true) @PathVariable Long rfxLineItemId) {
+        return Results.success(rfxService.publishRfx(tenantId, rfxLineItemId));
+    }
+
+    @ApiOperation(value = "供应商询价单查询")
+    @Permission(level = ResourceLevel.ORGANIZATION)
+    @GetMapping()
+    public ResponseEntity<Page<RfxBySupplierDTO>> listRfxBySupplier(
+                    @ApiParam(value = "租户Id", required = true) @PathVariable("organizationId") Long tenantId,
+                    @ApiIgnore PageRequest pageRequest) {
+        return Results.success(rfxRepository.listRfxBySupplier(tenantId,pageRequest));
+    }
+    @ApiOperation(value = "询价单参与")
+    @Permission(level = ResourceLevel.ORGANIZATION)
+    @GetMapping()
+    public ResponseEntity<Page<RfxBySupplierDTO>> participateRfx(
+            @ApiParam(value = "租户Id", required = true) @PathVariable("organizationId") Long tenantId,
+            @ApiParam(value = "询价单Id", required = true) Long rfxHeaderId) {
+        return Results.success();
+    }
+
 }

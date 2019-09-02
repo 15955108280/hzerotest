@@ -20,4 +20,10 @@ public class HeaderDoMainServiceImpl implements HeaderDoMainService {
 		Header header = new Header(tenantId, rfxHeaderId);
 		return headerRepository.selectOne(header) != null;
 	}
+
+	@Override
+	public Boolean lineItemIsNull(Long tenantId, Long lineItemId) {
+		Header header = new Header(tenantId, lineItemId);
+		return headerRepository.selectOne(header) != null;
+	}
 }

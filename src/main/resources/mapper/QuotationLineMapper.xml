@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.hzero.supplier.infra.mapper.QuotationLineMapper">
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap id="BaseResultMap" type="org.hzero.test1.domain.entity.QuotationLine">
+        <result column="quotation_line_id" property="quotationLineId" jdbcType="DECIMAL"/>
+        <result column="quotation_header_id" property="quotationHeaderId" jdbcType="DECIMAL"/>
+        <result column="tenant_id" property="tenantId" jdbcType="DECIMAL"/>
+        <result column="quotation_line_status" property="quotationLineStatus" jdbcType="VARCHAR"/>
+        <result column="rfx_line_item_id" property="rfxLineItemId" jdbcType="DECIMAL"/>
+        <result column="round_number" property="roundNumber" jdbcType="DECIMAL"/>
+        <result column="tax_included_flag" property="taxIncludedFlag" jdbcType="DECIMAL"/>
+        <result column="tax_id" property="taxId" jdbcType="DECIMAL"/>
+        <result column="tax_rate" property="taxRate" jdbcType="DECIMAL"/>
+        <result column="quoted_date" property="quotedDate" jdbcType="DATE"/>
+        <result column="price_batch_quantity" property="priceBatchQuantity" jdbcType="DECIMAL"/>
+        <result column="min_purchase_quantity" property="minPurchaseQuantity" jdbcType="DECIMAL"/>
+        <result column="min_package_quantity" property="minPackageQuantity" jdbcType="DECIMAL"/>
+        <result column="freight_amount" property="freightAmount" jdbcType="DECIMAL"/>
+        <result column="bargain_flag" property="bargainFlag" jdbcType="DECIMAL"/>
+        <result column="bargain_date" property="bargainDate" jdbcType="DATE"/>
+        <result column="valid_promised_date" property="validPromisedDate" jdbcType="DATE"/>
+        <result column="valid_delivery_cycle" property="validDeliveryCycle" jdbcType="VARCHAR"/>
+        <result column="valid_expiry_date_from" property="validExpiryDateFrom" jdbcType="DATE"/>
+        <result column="valid_expiry_date_to" property="validExpiryDateTo" jdbcType="DATE"/>
+        <result column="valid_quoted_by" property="validQuotedBy" jdbcType="DECIMAL"/>
+        <result column="valid_quotation_quantity" property="validQuotationQuantity" jdbcType="DECIMAL"/>
+        <result column="valid_quotation_price" property="validQuotationPrice" jdbcType="DECIMAL"/>
+        <result column="valid_quotation_remark" property="validQuotationRemark" jdbcType="VARCHAR"/>
+        <result column="valid_bargain_by" property="validBargainBy" jdbcType="DECIMAL"/>
+        <result column="valid_bargain_quantity" property="validBargainQuantity" jdbcType="DECIMAL"/>
+        <result column="valid_bargain_price" property="validBargainPrice" jdbcType="DECIMAL"/>
+        <result column="valid_bargain_remark" property="validBargainRemark" jdbcType="VARCHAR"/>
+        <result column="current_promised_date" property="currentPromisedDate" jdbcType="DATE"/>
+        <result column="current_delivery_cycle" property="currentDeliveryCycle" jdbcType="VARCHAR"/>
+        <result column="current_expiry_date_from" property="currentExpiryDateFrom" jdbcType="DATE"/>
+        <result column="current_expiry_date_to" property="currentExpiryDateTo" jdbcType="DATE"/>
+        <result column="current_quoted_by" property="currentQuotedBy" jdbcType="DECIMAL"/>
+        <result column="current_quotation_quantity" property="currentQuotationQuantity" jdbcType="DECIMAL"/>
+        <result column="current_quotation_price" property="currentQuotationPrice" jdbcType="DECIMAL"/>
+        <result column="current_quotation_remark" property="currentQuotationRemark" jdbcType="VARCHAR"/>
+        <result column="current_bargain_by" property="currentBargainBy" jdbcType="DECIMAL"/>
+        <result column="current_bargain_quantity" property="currentBargainQuantity" jdbcType="DECIMAL"/>
+        <result column="current_bargain_price" property="currentBargainPrice" jdbcType="DECIMAL"/>
+        <result column="current_bargain_remark" property="currentBargainRemark" jdbcType="VARCHAR"/>
+        <result column="net_price" property="netPrice" jdbcType="DECIMAL"/>
+        <result column="tax_price" property="taxPrice" jdbcType="DECIMAL"/>
+        <result column="net_amount" property="netAmount" jdbcType="DECIMAL"/>
+        <result column="tax_amount" property="taxAmount" jdbcType="DECIMAL"/>
+        <result column="total_amount" property="totalAmount" jdbcType="DECIMAL"/>
+        <result column="suggested_flag" property="suggestedFlag" jdbcType="DECIMAL"/>
+        <result column="suggested_by" property="suggestedBy" jdbcType="DECIMAL"/>
+        <result column="suggested_remark" property="suggestedRemark" jdbcType="VARCHAR"/>
+        <result column="allotted_quantity" property="allottedQuantity" jdbcType="DECIMAL"/>
+        <result column="attachment_uuid" property="attachmentUuid" jdbcType="VARCHAR"/>
+        <result column="object_version_number" property="objectVersionNumber" jdbcType="DECIMAL"/>
+        <result column="creation_date" property="creationDate" jdbcType="DATE"/>
+        <result column="created_by" property="createdBy" jdbcType="DECIMAL"/>
+        <result column="last_updated_by" property="lastUpdatedBy" jdbcType="DECIMAL"/>
+        <result column="last_update_date" property="lastUpdateDate" jdbcType="DATE"/>
+        <result column="abandoned_flag" property="abandonedFlag" jdbcType="DECIMAL"/>
+        <result column="current_attachment_uuid" property="currentAttachmentUuid" jdbcType="VARCHAR"/>
+        <result column="rank" property="rank" jdbcType="DECIMAL"/>
+        <result column="trend_flag" property="trendFlag" jdbcType="DECIMAL"/>
+    </resultMap>
+</mapper>

@@ -71,22 +71,7 @@
         <result column="pretrial_status" property="pretrialStatus" jdbcType="VARCHAR"/>
         <result column="quotation_type" property="quotationType" jdbcType="VARCHAR"/>
     </resultMap>
-    <insert id="insertGetId" useGeneratedKeys="true" keyProperty="rfxHeaderId" parameterType="org.hzero.test1.domain.entity.Header">
-        insert into ssrc_rfx_header
-            (tenant_id,rfx_num,rfx_status,rfx_title,template_id,source_category,source_method,pur_organization_id,company_id,company_name,auction_direction,
-            budget_amount,tax_included_flag,tax_id,tax_rate,currency_code,exchange_rate_id,exchange_rate_type,exchange_rate_date,exchange_rate_period,exchange_rate,rfx_remark,quotation_start_date,
-            quotation_end_date,sealed_quotation_flag,open_rule,auction_ranking,source_type,price_category,payment_type_id,payment_term_id,round_number,version_number,quotation_order_type,
-            quotation_running_duration,quotation_interval,auction_rule,auto_defer_flag,auto_defer_duration,released_date,released_by,terminated_date,terminated_by,terminated_remark,approved_date,
-            approved_by,approved_remark,time_adjusted_date,time_adjusted_by,time_adjusted_remark,closed_flag,source_from,pretrail_remark,total_cost,cost_remark,tech_attachment_uuid,business_attachment_uuid,
-            pretrial_user_id,back_pretrial_remark,pretrial_status,quotation_type )
-        values
-            (#{tenantId},#{rfxNum},#{rfxStatus},#{rfxTitle},#{templateId},#{sourceCategory},#{sourceMethod},#{purOrganizationId},#{companyId},#{companyName},#{auctionDirection},#{budgetAmount},#{taxIncludedFlag},
-            #{taxId},#{taxRate},#{currencyCode},#{exchangeRateId},#{exchangeRateType},#{exchangeRateDate},#{exchangeRatePeriod},#{exchangeRate},#{rfxRemark},#{quotationStartDate},#{quotationEndDate},#{sealedQuotationFlag},
-            #{openRule},#{auctionRanking},#{sourceType},#{priceCategory},#{paymentTypeId},#{paymentTermId},#{roundNumber},#{versionNumber},#{quotationOrderType},#{quotationRunningDuration},
-            #{quotationInterval},#{auctionRule},#{autoDeferFlag},#{autoDeferDuration},#{releasedDate},#{releasedBy},#{terminatedDate},#{terminatedBy},#{terminatedRemark},#{approvedDate},#{approvedBy},#{approvedRemark},
-            #{timeAdjustedDate},#{timeAdjustedBy},#{timeAdjustedRemark},#{closedFlag},#{sourceFrom},#{pretrailRemark},#{totalCost},#{costRemark},#{techAttachmentUuid},#{businessAttachmentUuid},#{pretrialUserId},
-            #{backPretrialRemark},#{pretrialStatus},#{quotationType})
-    </insert>
+
     <select id="getTenantId" parameterType="java.lang.Long" resultType="java.lang.Long">
         select
             tenant_id from ssrc_rfx_header

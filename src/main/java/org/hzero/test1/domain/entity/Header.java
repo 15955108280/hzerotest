@@ -101,6 +101,12 @@ public class Header extends AuditDomain {
     //
     // 数据库字段
     // ------------------------------------------------------------------------------
+
+	/**
+	 * 赋值
+	 * @param tenantId 租户id
+	 * @param rfxHeaderId 询价单头id
+	 */
 	public Header(Long tenantId, Long rfxHeaderId){
 		this.tenantId = tenantId;
 		this.rfxHeaderId = rfxHeaderId;

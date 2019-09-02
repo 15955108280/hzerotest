@@ -5,7 +5,11 @@ import org.springframework.context.annotation.Configuration;
 
 import springfox.documentation.service.Tag;
 import springfox.documentation.spring.web.plugins.Docket;
-
+/**
+ * description
+ *
+ * @author YXP 2019/08/26 15:12
+ */
 @Configuration
 public class SwaggerApiConfig {
     public static final String RFX = "rfx";

@@ -11,22 +11,29 @@ import java.util.List;
  * @author YXP 2019/08/27 9:52
  */
 public class RfxDTO {
-	private Header header;
-	private List<LineItem> lineItem;
 
-	public Header getHeader() {
-		return header;
-	}
 
-	public void setHeader(Header header) {
-		this.header = header;
-	}
+    private Header header;
+    private List<LineItem> lineItem;
 
-	public List<LineItem> getLineItem() {
-		return lineItem;
-	}
+    public Header getHeader() {
+        return header;
+    }
 
-	public void setLineItem(List<LineItem> lineItem) {
-		this.lineItem = lineItem;
-	}
+    public void setHeader(Header header) {
+        this.header = header;
+    }
+
+    @Override
+    public String toString() {
+        return "RfxDTO{" + "header=" + header + ", lineItem=" + lineItem + '}';
+    }
+
+    public List<LineItem> getLineItem() {
+        return lineItem;
+    }
+
+    public void setLineItem(List<LineItem> lineItem) {
+        this.lineItem = lineItem;
+    }
 }

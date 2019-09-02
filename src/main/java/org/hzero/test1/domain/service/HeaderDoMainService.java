@@ -12,8 +12,16 @@ public interface HeaderDoMainService {
 	/**
 	 * 判断订单头是否为空
 	 * @param tenantId 租户id
-	 * @param rfxheaderId 询价单头id
+	 * @param rfxHeaderId 询价单头id
 	 * @return 是否存在
 	 */
-	 Boolean headerIsNull(Long tenantId, Long rfxheaderId);
+	 Boolean headerIsNull(Long tenantId, Long rfxHeaderId);
+
+	/**
+	 * 判断该询价单头下物料行是否为空
+	 * @param tenantId 租户id
+	 * @param rfxHeaderId 头id
+	 * @return 是否存在
+	 */
+	 Boolean lineItemIsNull(Long tenantId, Long rfxHeaderId);
 }

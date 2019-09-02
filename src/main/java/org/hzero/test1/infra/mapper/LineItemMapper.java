@@ -15,24 +15,12 @@ import java.util.List;
  * @author xingpeng.yang@hand-china.com 2019-08-26 11:38:00
  */
 public interface LineItemMapper extends BaseMapper<LineItem> {
+
+
 	/**
-	*@Description: 重写批量添加方法
-	*@Param: [list]
-	*@return: int
-	*@Author: Xingpeng.Yang
-	*@date: 2019/8/27
-	*/
-	@Override
-	@Options(useGeneratedKeys = true, keyProperty = "rfxLineItemId")
-	@InsertProvider(type = SpecialProvider.class, method = "dynamicSql")
-	int insertList(List<LineItem> list);
-	
-	/**
-	*@Description: 获取租户id
-	*@Param: [tenantId]
-	*@return: java.lang.Long
-	*@Author: Xingpeng.Yang
-	*@date: 2019/8/27
-	*/
+	 * 获取租户id
+	 * @param tenantId 租户id
+	 * @return 租户id
+	 */
 	Long getTenantId(Long tenantId);
 }

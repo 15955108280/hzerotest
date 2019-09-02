@@ -35,6 +35,25 @@ public class QueryDTO {
 	private String deliveryAddress;
 	@ApiModelProperty(value = "物品说明")
 	private String itemRemark;
+
+	@Override
+	public String toString() {
+		return "QueryDTO{" +
+				"rfxHeaderId=" + rfxHeaderId +
+				", rfxNum='" + rfxNum + '\'' +
+				", rfxStatus='" + rfxStatus + '\'' +
+				", rfxTitle='" + rfxTitle + '\'' +
+				", auctionDirection='" + auctionDirection + '\'' +
+				", rfxLineItemId=" + rfxLineItemId +
+				", rfxLineItemNum=" + rfxLineItemNum +
+				", tenantId=" + tenantId +
+				", itemCode='" + itemCode + '\'' +
+				", itemName='" + itemName + '\'' +
+				", deliveryAddress='" + deliveryAddress + '\'' +
+				", itemRemark='" + itemRemark + '\'' +
+				'}';
+	}
+
 	public QueryDTO(Long tenantId){
 		this.tenantId = tenantId;
 	}

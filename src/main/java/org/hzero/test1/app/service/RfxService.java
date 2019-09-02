@@ -5,6 +5,7 @@ import io.choerodon.mybatis.pagehelper.domain.PageRequest;
 import org.hzero.test1.api.dto.QueryDTO;
 import org.hzero.test1.api.dto.RfxDTO;
 import org.hzero.test1.api.dto.RfxSummaryDTO;
+import org.hzero.test1.domain.entity.Header;
 import org.hzero.test1.domain.entity.LineItem;
 
 /**
@@ -17,6 +18,7 @@ public interface RfxService {
 	/**
 	 * 创建询价单
 	 * @param rfxDTO 询价单
+	 * @param tenantId 租户id
 	 */
 	void createLineItem(RfxDTO rfxDTO,Long tenantId);
 
@@ -38,4 +40,12 @@ public interface RfxService {
 	 * @return 分页查询结果
 	 */
 	Page<RfxSummaryDTO> listLineItem(PageRequest pageRequest, QueryDTO queryDTO, Long tenantId);
+
+	/**
+	 * 发布询价单
+	 * @param tenantId 租户id
+	 * @param rfxLineItemId 询价单id
+	 * @return 询价单
+	 */
+	Header publishRfx(Long tenantId, Long rfxLineItemId);
 }

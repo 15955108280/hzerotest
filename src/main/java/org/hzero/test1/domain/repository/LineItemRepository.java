@@ -18,4 +18,5 @@ public interface LineItemRepository extends BaseRepository<LineItem> {
 	 * @return 租户id
 	 */
 	Long getTenantId(Long tenantId);
+
 }

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.hzero.supplier.infra.mapper.ActionMapper">
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap id="BaseResultMap" type="org.hzero.test1.domain.entity.Action">
+        <result column="rfx_action_id" property="rfxActionId" jdbcType="DECIMAL"/>
+        <result column="rfx_header_id" property="rfxHeaderId" jdbcType="DECIMAL"/>
+        <result column="tenant_id" property="tenantId" jdbcType="DECIMAL"/>
+        <result column="process_user_id" property="processUserId" jdbcType="DECIMAL"/>
+        <result column="process_status" property="processStatus" jdbcType="VARCHAR"/>
+        <result column="process_date" property="processDate" jdbcType="DATE"/>
+        <result column="process_remark" property="processRemark" jdbcType="VARCHAR"/>
+        <result column="object_version_number" property="objectVersionNumber" jdbcType="DECIMAL"/>
+        <result column="creation_date" property="creationDate" jdbcType="DATE"/>
+        <result column="created_by" property="createdBy" jdbcType="DECIMAL"/>
+        <result column="last_updated_by" property="lastUpdatedBy" jdbcType="DECIMAL"/>
+        <result column="last_update_date" property="lastUpdateDate" jdbcType="DATE"/>
+        <result column="process_operation" property="processOperation" jdbcType="VARCHAR"/>
+    </resultMap>
+</mapper>

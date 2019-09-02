@@ -1,5 +1,8 @@
 package org.hzero.test1.app.service.impl;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.hzero.test1.api.dto.QueryDTO;
@@ -11,6 +14,7 @@ import org.hzero.test1.domain.entity.LineItem;
 import org.hzero.test1.domain.repository.HeaderRepository;
 import org.hzero.test1.domain.repository.LineItemRepository;
 import org.hzero.test1.domain.repository.RfxRepository;
+import org.hzero.test1.domain.service.HeaderDoMainService;
 import org.hzero.test1.domain.service.LineItemDoMainService;
 import org.hzero.test1.infra.constant.Instance;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,11 +41,13 @@ public class RfxServiceImpl implements RfxService {
     @Autowired
     LineItemDoMainService lineItemDoMainService;
     @Autowired
+    HeaderDoMainService headerDoMainService;
+    @Autowired
     RfxRepository rfxRepository;
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-    public void createLineItem(RfxDTO rfxDTO,Long tenantId) {
+    public void createLineItem(RfxDTO rfxDTO, Long tenantId) {
         Header header = new Header(tenantId);
         Long rfxHeaderId = headerRepository.insertGetId(header);
         List<LineItem> lineItemList = rfxDTO.getLineItem();
@@ -66,5 +72,16 @@ public class RfxServiceImpl implements RfxService {
     public Page<RfxSummaryDTO> listLineItem(PageRequest pageRequest, QueryDTO queryDTO, Long tenantId) {
         queryDTO.setTenantId(tenantId);
         return rfxRepository.listLineItem(pageRequest, queryDTO);
+    }
+
+    @Override
+    public Header publishRfx(Long tenantId, Long rfxHeaderId) {
+        Assert.isTrue(headerDoMainService.lineItemIsNull(tenantId, rfxHeaderId),
+                        Instance.ERROR_LINEITEM_IN_HEADER_NOT_FOUND);
+        Header header = new Header(tenantId, rfxHeaderId);
+        header.setRfxStatus("IN_QUOTATION");
+        Assert.isTrue(header.getQuotationStartDate().compareTo(new Date())==-1,Instance.ERROR_TIME_IS_NOT_ALLOWED);
+        headerRepository.updateByPrimaryKeySelective(header);
+        return headerRepository.selectByPrimaryKey(header);
     }
 }
