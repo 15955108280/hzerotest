@@ -18,9 +18,9 @@ public class LineItemDoMainServiceImpl implements LineItemDoMainService {
     LineItemRepository lineItemRepository;
 
 
-	@Override
-	public Boolean lineItemIsNull(Long tenantId, Long rfxLineItemId) {
-		LineItem lineItem = new LineItem(tenantId,rfxLineItemId);
-		return lineItemRepository.selectOne(lineItem) != null;
-	}
+    @Override
+    public Boolean lineItemIsNull(Long tenantId, Long rfxLineItemId) {
+        LineItem lineItem = new LineItem(tenantId, rfxLineItemId);
+        return lineItemRepository.selectOne(lineItem) != null;
+    }
 }

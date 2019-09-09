@@ -65,59 +65,81 @@ public class QuotationHeader extends AuditDomain {
     @Id
     @GeneratedValue
     private Long quotationHeaderId;
-    @ApiModelProperty(value = "所属租户ID，hpfm_tenant.tenant_id",required = true)
+    @ApiModelProperty(value = "所属租户ID，hpfm_tenant.tenant_id", required = true)
     @NotNull
     private Long tenantId;
-    @ApiModelProperty(value = "RFx单头ID",required = true)
+    @ApiModelProperty(value = "RFx单头ID", required = true)
     @NotNull
     private Long rfxHeaderId;
-    @ApiModelProperty(value = "RFx报价单号",required = true)
+    @ApiModelProperty(value = "RFx报价单号", required = true)
     @NotBlank
     private String quotationNum;
-    @ApiModelProperty(value = "轮次",required = true)
+    @ApiModelProperty(value = "轮次", required = true)
     @NotNull
     private Long roundNumber;
-    @ApiModelProperty(value = "报价单状态SSRC.RFX_QUOTATION_STATUS(NEW/新建|QUOTED/已报价|FINISHED/结束)",required = true)
+    @ApiModelProperty(value = "报价单状态SSRC.RFX_QUOTATION_STATUS(NEW/新建|QUOTED/已报价|FINISHED/结束)", required = true)
     @NotBlank
     private String quotationStatus;
-   @ApiModelProperty(value = "")    
+    @ApiModelProperty(value = "")
     private Long supplierTenantId;
-   @ApiModelProperty(value = "")    
+    @ApiModelProperty(value = "")
     private Long supplierCompanyId;
-    @ApiModelProperty(value = "供应方企业名称",required = true)
+    @ApiModelProperty(value = "供应方企业名称", required = true)
     @NotBlank
     private String supplierCompanyName;
-    @ApiModelProperty(value = "含税标识",required = true)
+    @ApiModelProperty(value = "含税标识", required = true)
     @NotNull
     private Integer taxIncludedFlag;
-   @ApiModelProperty(value = "税率ID")    
+    @ApiModelProperty(value = "税率ID")
     private Long taxId;
-   @ApiModelProperty(value = "税率")    
+    @ApiModelProperty(value = "税率")
     private BigDecimal taxRate;
-    @ApiModelProperty(value = "币种",required = true)
+    @ApiModelProperty(value = "币种", required = true)
     @NotBlank
     private String currencyCode;
-   @ApiModelProperty(value = "汇率")    
+    @ApiModelProperty(value = "汇率")
     private Long exchangeRateId;
-   @ApiModelProperty(value = "汇率类型")    
+    @ApiModelProperty(value = "汇率类型")
     private String exchangeRateType;
-   @ApiModelProperty(value = "汇率日期")    
+    @ApiModelProperty(value = "汇率日期")
     private Date exchangeRateDate;
-   @ApiModelProperty(value = "汇率期间")    
+    @ApiModelProperty(value = "汇率期间")
     private String exchangeRatePeriod;
-   @ApiModelProperty(value = "备注")    
+    @ApiModelProperty(value = "备注")
     private String quotationRemark;
-   @ApiModelProperty(value = "商务附件UUID")    
+    @ApiModelProperty(value = "商务附件UUID")
     private String businessAttachmentUuid;
-   @ApiModelProperty(value = "技术附件UUID")    
+    @ApiModelProperty(value = "技术附件UUID")
     private String techAttachmentUuid;
-    @ApiModelProperty(value = "录入方式，SSRC.RFX_QUOTATION.ENTRY_METHOD(OFFLINE/线下录入|ONLINE/线上录入)",required = true)
+    @ApiModelProperty(value = "录入方式，SSRC.RFX_QUOTATION.ENTRY_METHOD(OFFLINE/线下录入|ONLINE/线上录入)", required = true)
     @NotBlank
     private String entryMethod;
-   @ApiModelProperty(value = "报价单头附件提交标识")    
+    @ApiModelProperty(value = "报价单头附件提交标识")
     private Integer submitAttachmentFlag;
 
-	//
+    public QuotationHeader() {
+
+    }
+
+    public QuotationHeader(Header header, Long supplierTenantId, String supplierCompanyName) {
+        this.tenantId = header.getTenantId();
+        this.rfxHeaderId = header.getRfxHeaderId();
+        this.roundNumber = header.getRoundNumber();
+        this.quotationStatus = "NEW";
+        this.taxIncludedFlag = header.getTaxIncludedFlag();
+        this.taxId = header.getTaxId();
+        this.taxRate = header.getTaxRate();
+        this.currencyCode = header.getCurrencyCode();
+        this.exchangeRateId = header.getExchangeRateId();
+        this.exchangeRateType = header.getExchangeRateType();
+        this.exchangeRateDate = header.getExchangeRateDate();
+        this.exchangeRatePeriod = header.getExchangeRatePeriod();
+        this.businessAttachmentUuid = header.getBusinessAttachmentUuid();
+        this.techAttachmentUuid = header.getTechAttachmentUuid();
+        this.supplierTenantId = supplierTenantId;
+        this.supplierCompanyName = supplierCompanyName;
+    }
+    //
     // 非数据库字段
     // ------------------------------------------------------------------------------
 
@@ -126,224 +148,245 @@ public class QuotationHeader extends AuditDomain {
     // ------------------------------------------------------------------------------
 
     /**
-     * @return 
+     * @return
      */
-	public Long getQuotationHeaderId() {
-		return quotationHeaderId;
-	}
+    public Long getQuotationHeaderId() {
+        return quotationHeaderId;
+    }
 
-	public void setQuotationHeaderId(Long quotationHeaderId) {
-		this.quotationHeaderId = quotationHeaderId;
-	}
+    public void setQuotationHeaderId(Long quotationHeaderId) {
+        this.quotationHeaderId = quotationHeaderId;
+    }
+
     /**
      * @return 所属租户ID，hpfm_tenant.tenant_id
      */
-	public Long getTenantId() {
-		return tenantId;
-	}
+    public Long getTenantId() {
+        return tenantId;
+    }
 
-	public void setTenantId(Long tenantId) {
-		this.tenantId = tenantId;
-	}
+    public void setTenantId(Long tenantId) {
+        this.tenantId = tenantId;
+    }
+
     /**
      * @return RFx单头ID
      */
-	public Long getRfxHeaderId() {
-		return rfxHeaderId;
-	}
+    public Long getRfxHeaderId() {
+        return rfxHeaderId;
+    }
 
-	public void setRfxHeaderId(Long rfxHeaderId) {
-		this.rfxHeaderId = rfxHeaderId;
-	}
+    public void setRfxHeaderId(Long rfxHeaderId) {
+        this.rfxHeaderId = rfxHeaderId;
+    }
+
     /**
      * @return RFx报价单号
      */
-	public String getQuotationNum() {
-		return quotationNum;
-	}
+    public String getQuotationNum() {
+        return quotationNum;
+    }
 
-	public void setQuotationNum(String quotationNum) {
-		this.quotationNum = quotationNum;
-	}
+    public void setQuotationNum(String quotationNum) {
+        this.quotationNum = quotationNum;
+    }
+
     /**
      * @return 轮次
      */
-	public Long getRoundNumber() {
-		return roundNumber;
-	}
+    public Long getRoundNumber() {
+        return roundNumber;
+    }
 
-	public void setRoundNumber(Long roundNumber) {
-		this.roundNumber = roundNumber;
-	}
+    public void setRoundNumber(Long roundNumber) {
+        this.roundNumber = roundNumber;
+    }
+
     /**
      * @return 报价单状态SSRC.RFX_QUOTATION_STATUS(NEW/新建|QUOTED/已报价|FINISHED/结束)
      */
-	public String getQuotationStatus() {
-		return quotationStatus;
-	}
+    public String getQuotationStatus() {
+        return quotationStatus;
+    }
 
-	public void setQuotationStatus(String quotationStatus) {
-		this.quotationStatus = quotationStatus;
-	}
+    public void setQuotationStatus(String quotationStatus) {
+        this.quotationStatus = quotationStatus;
+    }
+
     /**
-     * @return 
+     * @return
      */
-	public Long getSupplierTenantId() {
-		return supplierTenantId;
-	}
+    public Long getSupplierTenantId() {
+        return supplierTenantId;
+    }
 
-	public void setSupplierTenantId(Long supplierTenantId) {
-		this.supplierTenantId = supplierTenantId;
-	}
+    public void setSupplierTenantId(Long supplierTenantId) {
+        this.supplierTenantId = supplierTenantId;
+    }
+
     /**
-     * @return 
+     * @return
      */
-	public Long getSupplierCompanyId() {
-		return supplierCompanyId;
-	}
+    public Long getSupplierCompanyId() {
+        return supplierCompanyId;
+    }
 
-	public void setSupplierCompanyId(Long supplierCompanyId) {
-		this.supplierCompanyId = supplierCompanyId;
-	}
+    public void setSupplierCompanyId(Long supplierCompanyId) {
+        this.supplierCompanyId = supplierCompanyId;
+    }
+
     /**
      * @return 供应方企业名称
      */
-	public String getSupplierCompanyName() {
-		return supplierCompanyName;
-	}
+    public String getSupplierCompanyName() {
+        return supplierCompanyName;
+    }
 
-	public void setSupplierCompanyName(String supplierCompanyName) {
-		this.supplierCompanyName = supplierCompanyName;
-	}
+    public void setSupplierCompanyName(String supplierCompanyName) {
+        this.supplierCompanyName = supplierCompanyName;
+    }
+
     /**
      * @return 含税标识
      */
-	public Integer getTaxIncludedFlag() {
-		return taxIncludedFlag;
-	}
+    public Integer getTaxIncludedFlag() {
+        return taxIncludedFlag;
+    }
 
-	public void setTaxIncludedFlag(Integer taxIncludedFlag) {
-		this.taxIncludedFlag = taxIncludedFlag;
-	}
+    public void setTaxIncludedFlag(Integer taxIncludedFlag) {
+        this.taxIncludedFlag = taxIncludedFlag;
+    }
+
     /**
      * @return 税率ID
      */
-	public Long getTaxId() {
-		return taxId;
-	}
+    public Long getTaxId() {
+        return taxId;
+    }
 
-	public void setTaxId(Long taxId) {
-		this.taxId = taxId;
-	}
+    public void setTaxId(Long taxId) {
+        this.taxId = taxId;
+    }
+
     /**
      * @return 税率
      */
-	public BigDecimal getTaxRate() {
-		return taxRate;
-	}
+    public BigDecimal getTaxRate() {
+        return taxRate;
+    }
 
-	public void setTaxRate(BigDecimal taxRate) {
-		this.taxRate = taxRate;
-	}
+    public void setTaxRate(BigDecimal taxRate) {
+        this.taxRate = taxRate;
+    }
+
     /**
      * @return 币种
      */
-	public String getCurrencyCode() {
-		return currencyCode;
-	}
+    public String getCurrencyCode() {
+        return currencyCode;
+    }
 
-	public void setCurrencyCode(String currencyCode) {
-		this.currencyCode = currencyCode;
-	}
+    public void setCurrencyCode(String currencyCode) {
+        this.currencyCode = currencyCode;
+    }
+
     /**
      * @return 汇率
      */
-	public Long getExchangeRateId() {
-		return exchangeRateId;
-	}
+    public Long getExchangeRateId() {
+        return exchangeRateId;
+    }
 
-	public void setExchangeRateId(Long exchangeRateId) {
-		this.exchangeRateId = exchangeRateId;
-	}
+    public void setExchangeRateId(Long exchangeRateId) {
+        this.exchangeRateId = exchangeRateId;
+    }
+
     /**
      * @return 汇率类型
      */
-	public String getExchangeRateType() {
-		return exchangeRateType;
-	}
+    public String getExchangeRateType() {
+        return exchangeRateType;
+    }
 
-	public void setExchangeRateType(String exchangeRateType) {
-		this.exchangeRateType = exchangeRateType;
-	}
+    public void setExchangeRateType(String exchangeRateType) {
+        this.exchangeRateType = exchangeRateType;
+    }
+
     /**
      * @return 汇率日期
      */
-	public Date getExchangeRateDate() {
-		return exchangeRateDate;
-	}
+    public Date getExchangeRateDate() {
+        return exchangeRateDate;
+    }
 
-	public void setExchangeRateDate(Date exchangeRateDate) {
-		this.exchangeRateDate = exchangeRateDate;
-	}
+    public void setExchangeRateDate(Date exchangeRateDate) {
+        this.exchangeRateDate = exchangeRateDate;
+    }
+
     /**
      * @return 汇率期间
      */
-	public String getExchangeRatePeriod() {
-		return exchangeRatePeriod;
-	}
+    public String getExchangeRatePeriod() {
+        return exchangeRatePeriod;
+    }
 
-	public void setExchangeRatePeriod(String exchangeRatePeriod) {
-		this.exchangeRatePeriod = exchangeRatePeriod;
-	}
+    public void setExchangeRatePeriod(String exchangeRatePeriod) {
+        this.exchangeRatePeriod = exchangeRatePeriod;
+    }
+
     /**
      * @return 备注
      */
-	public String getQuotationRemark() {
-		return quotationRemark;
-	}
+    public String getQuotationRemark() {
+        return quotationRemark;
+    }
 
-	public void setQuotationRemark(String quotationRemark) {
-		this.quotationRemark = quotationRemark;
-	}
+    public void setQuotationRemark(String quotationRemark) {
+        this.quotationRemark = quotationRemark;
+    }
+
     /**
      * @return 商务附件UUID
      */
-	public String getBusinessAttachmentUuid() {
-		return businessAttachmentUuid;
-	}
+    public String getBusinessAttachmentUuid() {
+        return businessAttachmentUuid;
+    }
 
-	public void setBusinessAttachmentUuid(String businessAttachmentUuid) {
-		this.businessAttachmentUuid = businessAttachmentUuid;
-	}
+    public void setBusinessAttachmentUuid(String businessAttachmentUuid) {
+        this.businessAttachmentUuid = businessAttachmentUuid;
+    }
+
     /**
      * @return 技术附件UUID
      */
-	public String getTechAttachmentUuid() {
-		return techAttachmentUuid;
-	}
+    public String getTechAttachmentUuid() {
+        return techAttachmentUuid;
+    }
 
-	public void setTechAttachmentUuid(String techAttachmentUuid) {
-		this.techAttachmentUuid = techAttachmentUuid;
-	}
+    public void setTechAttachmentUuid(String techAttachmentUuid) {
+        this.techAttachmentUuid = techAttachmentUuid;
+    }
+
     /**
      * @return 录入方式，SSRC.RFX_QUOTATION.ENTRY_METHOD(OFFLINE/线下录入|ONLINE/线上录入)
      */
-	public String getEntryMethod() {
-		return entryMethod;
-	}
+    public String getEntryMethod() {
+        return entryMethod;
+    }
 
-	public void setEntryMethod(String entryMethod) {
-		this.entryMethod = entryMethod;
-	}
+    public void setEntryMethod(String entryMethod) {
+        this.entryMethod = entryMethod;
+    }
+
     /**
      * @return 报价单头附件提交标识
      */
-	public Integer getSubmitAttachmentFlag() {
-		return submitAttachmentFlag;
-	}
+    public Integer getSubmitAttachmentFlag() {
+        return submitAttachmentFlag;
+    }
 
-	public void setSubmitAttachmentFlag(Integer submitAttachmentFlag) {
-		this.submitAttachmentFlag = submitAttachmentFlag;
-	}
+    public void setSubmitAttachmentFlag(Integer submitAttachmentFlag) {
+        this.submitAttachmentFlag = submitAttachmentFlag;
+    }
 
 }

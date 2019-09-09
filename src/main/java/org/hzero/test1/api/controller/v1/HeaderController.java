@@ -37,7 +37,7 @@ public class HeaderController extends BaseController {
     @Permission(level = ResourceLevel.ORGANIZATION)
     @GetMapping
     public ResponseEntity<Page<Header>> list(Header header, @ApiIgnore @SortDefault(value = Header.FIELD_RFX_HEADER_ID,
-            direction = Sort.Direction.DESC) PageRequest pageRequest) {
+                    direction = Sort.Direction.DESC) PageRequest pageRequest) {
         Page<Header> list = headerRepository.pageAndSort(pageRequest, header);
         return Results.success(list);
     }

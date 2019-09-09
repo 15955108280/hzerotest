@@ -17,10 +17,11 @@ import java.util.List;
 public interface LineItemMapper extends BaseMapper<LineItem> {
 
 
-	/**
-	 * 获取租户id
-	 * @param tenantId 租户id
-	 * @return 租户id
-	 */
-	Long getTenantId(Long tenantId);
+    /**
+     * 获取租户id
+     * 
+     * @param tenantId 租户id
+     * @return 租户id
+     */
+    Long getTenantId(Long tenantId);
 }

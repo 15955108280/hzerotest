@@ -99,14 +99,20 @@ public class LineSupplier extends AuditDomain {
     @ApiModelProperty(value = "添加备注")
     private String appendRemark;
 
-	public LineSupplier(){
+    public LineSupplier() {
 
-	}
+    }
 
-	public LineSupplier(Long tenantId,Long rfxLineSupplierId){
-		this.tenantId = tenantId;
-		this.rfxLineSupplierId = rfxLineSupplierId;
-	}
+    public LineSupplier(Long tenantId, Long supplierCompanyId) {
+        this.tenantId = tenantId;
+        this.supplierCompanyId = supplierCompanyId;
+    }
+
+    public LineSupplier(Long tenantId, Long supplierCompanyId, Long rfxHeaderId) {
+        this.tenantId = tenantId;
+        this.supplierCompanyId = supplierCompanyId;
+        this.rfxHeaderId = rfxHeaderId;
+    }
 
     //
     // 非数据库字段

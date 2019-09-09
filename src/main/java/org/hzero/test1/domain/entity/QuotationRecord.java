@@ -62,50 +62,76 @@ public class QuotationRecord extends AuditDomain {
     @Id
     @GeneratedValue
     private Long recordId;
-    @ApiModelProperty(value = "所属租户ID，hpfm_tenant.tenant_id",required = true)
+    @ApiModelProperty(value = "所属租户ID，hpfm_tenant.tenant_id", required = true)
     @NotNull
     private Long tenantId;
-    @ApiModelProperty(value = "报价行ID",required = true)
+    @ApiModelProperty(value = "报价行ID", required = true)
     @NotNull
     private Long quotationLineId;
-    @ApiModelProperty(value = "报价次数",required = true)
+    @ApiModelProperty(value = "报价次数", required = true)
     @NotNull
     private Long quotationCount;
-   @ApiModelProperty(value = "报价数量")    
+    @ApiModelProperty(value = "报价数量")
     private BigDecimal quotationQuantity;
-   @ApiModelProperty(value = "报价价格")    
+    @ApiModelProperty(value = "报价价格")
     private BigDecimal quotationPrice;
-   @ApiModelProperty(value = "报价理由")    
+    @ApiModelProperty(value = "报价理由")
     private String quotationRemark;
-   @ApiModelProperty(value = "报价时间")    
+    @ApiModelProperty(value = "报价时间")
     private Date quotedDate;
-   @ApiModelProperty(value = "有效报价人")    
+    @ApiModelProperty(value = "有效报价人")
     private Long quotedBy;
-   @ApiModelProperty(value = "价格批量")    
+    @ApiModelProperty(value = "价格批量")
     private BigDecimal priceBatchQuantity;
-   @ApiModelProperty(value = "承诺交货日期")    
+    @ApiModelProperty(value = "承诺交货日期")
     private Date promisedDate;
-   @ApiModelProperty(value = "供货周期")    
+    @ApiModelProperty(value = "供货周期")
     private String deliveryCycle;
-   @ApiModelProperty(value = "报价有效期从")    
+    @ApiModelProperty(value = "报价有效期从")
     private Date quotationExpiryDateFrom;
-   @ApiModelProperty(value = "报价有效期至")    
+    @ApiModelProperty(value = "报价有效期至")
     private Date quotationExpiryDateTo;
-    @ApiModelProperty(value = "还价标志",required = true)
+    @ApiModelProperty(value = "还价标志", required = true)
     @NotNull
     private Integer bargainFlag;
-   @ApiModelProperty(value = "还价时间")    
+    @ApiModelProperty(value = "还价时间")
     private Date bargainDate;
-   @ApiModelProperty(value = "还价人")    
+    @ApiModelProperty(value = "还价人")
     private Long bargainBy;
-   @ApiModelProperty(value = "还价数量")    
+    @ApiModelProperty(value = "还价数量")
     private BigDecimal bargainQuantity;
-   @ApiModelProperty(value = "还价单价")    
+    @ApiModelProperty(value = "还价单价")
     private BigDecimal bargainPrice;
-   @ApiModelProperty(value = "还价理由")    
+    @ApiModelProperty(value = "还价理由")
     private String bargainRemark;
 
-	//
+    public QuotationRecord() {
+
+    }
+
+    public QuotationRecord(QuotationLine quotationLine) {
+        this.tenantId = quotationLine.getTenantId();
+        this.quotationLineId = quotationLine.getQuotationLineId();
+        this.quotationCount = quotationLine.getQuotationHeaderId();
+        this.quotationQuantity = quotationLine.getCurrentQuotationQuantity();
+        this.quotationPrice = quotationLine.getCurrentQuotationPrice();
+        this.quotationRemark = quotationLine.getCurrentQuotationRemark();
+        this.quotedDate = quotationLine.getQuotedDate();
+        this.quotedBy = quotationLine.getCurrentQuotedBy();
+        this.priceBatchQuantity = quotationLine.getPriceBatchQuantity();
+        this.promisedDate = quotationLine.getCurrentPromisedDate();
+        this.deliveryCycle = quotationLine.getCurrentDeliveryCycle();
+        this.quotationExpiryDateFrom = quotationLine.getCurrentExpiryDateFrom();
+        this.quotationExpiryDateTo = quotationLine.getCurrentExpiryDateTo();
+        this.bargainFlag = quotationLine.getBargainFlag();
+        this.bargainDate = quotationLine.getBargainDate();
+        this.bargainBy = quotationLine.getCurrentBargainBy();
+        this.bargainQuantity = quotationLine.getCurrentBargainQuantity();
+        this.bargainPrice = quotationLine.getCurrentBargainPrice();
+        this.bargainRemark = quotationLine.getCurrentBargainRemark();
+    }
+
+    //
     // 非数据库字段
     // ------------------------------------------------------------------------------
 
@@ -114,204 +140,223 @@ public class QuotationRecord extends AuditDomain {
     // ------------------------------------------------------------------------------
 
     /**
-     * @return 
+     * @return
      */
-	public Long getRecordId() {
-		return recordId;
-	}
+    public Long getRecordId() {
+        return recordId;
+    }
 
-	public void setRecordId(Long recordId) {
-		this.recordId = recordId;
-	}
+    public void setRecordId(Long recordId) {
+        this.recordId = recordId;
+    }
+
     /**
      * @return 所属租户ID，hpfm_tenant.tenant_id
      */
-	public Long getTenantId() {
-		return tenantId;
-	}
+    public Long getTenantId() {
+        return tenantId;
+    }
 
-	public void setTenantId(Long tenantId) {
-		this.tenantId = tenantId;
-	}
+    public void setTenantId(Long tenantId) {
+        this.tenantId = tenantId;
+    }
+
     /**
      * @return 报价行ID
      */
-	public Long getQuotationLineId() {
-		return quotationLineId;
-	}
+    public Long getQuotationLineId() {
+        return quotationLineId;
+    }
 
-	public void setQuotationLineId(Long quotationLineId) {
-		this.quotationLineId = quotationLineId;
-	}
+    public void setQuotationLineId(Long quotationLineId) {
+        this.quotationLineId = quotationLineId;
+    }
+
     /**
      * @return 报价次数
      */
-	public Long getQuotationCount() {
-		return quotationCount;
-	}
+    public Long getQuotationCount() {
+        return quotationCount;
+    }
 
-	public void setQuotationCount(Long quotationCount) {
-		this.quotationCount = quotationCount;
-	}
+    public void setQuotationCount(Long quotationCount) {
+        this.quotationCount = quotationCount;
+    }
+
     /**
      * @return 报价数量
      */
-	public BigDecimal getQuotationQuantity() {
-		return quotationQuantity;
-	}
+    public BigDecimal getQuotationQuantity() {
+        return quotationQuantity;
+    }
 
-	public void setQuotationQuantity(BigDecimal quotationQuantity) {
-		this.quotationQuantity = quotationQuantity;
-	}
+    public void setQuotationQuantity(BigDecimal quotationQuantity) {
+        this.quotationQuantity = quotationQuantity;
+    }
+
     /**
      * @return 报价价格
      */
-	public BigDecimal getQuotationPrice() {
-		return quotationPrice;
-	}
+    public BigDecimal getQuotationPrice() {
+        return quotationPrice;
+    }
 
-	public void setQuotationPrice(BigDecimal quotationPrice) {
-		this.quotationPrice = quotationPrice;
-	}
+    public void setQuotationPrice(BigDecimal quotationPrice) {
+        this.quotationPrice = quotationPrice;
+    }
+
     /**
      * @return 报价理由
      */
-	public String getQuotationRemark() {
-		return quotationRemark;
-	}
+    public String getQuotationRemark() {
+        return quotationRemark;
+    }
 
-	public void setQuotationRemark(String quotationRemark) {
-		this.quotationRemark = quotationRemark;
-	}
+    public void setQuotationRemark(String quotationRemark) {
+        this.quotationRemark = quotationRemark;
+    }
+
     /**
      * @return 报价时间
      */
-	public Date getQuotedDate() {
-		return quotedDate;
-	}
+    public Date getQuotedDate() {
+        return quotedDate;
+    }
 
-	public void setQuotedDate(Date quotedDate) {
-		this.quotedDate = quotedDate;
-	}
+    public void setQuotedDate(Date quotedDate) {
+        this.quotedDate = quotedDate;
+    }
+
     /**
      * @return 有效报价人
      */
-	public Long getQuotedBy() {
-		return quotedBy;
-	}
+    public Long getQuotedBy() {
+        return quotedBy;
+    }
 
-	public void setQuotedBy(Long quotedBy) {
-		this.quotedBy = quotedBy;
-	}
+    public void setQuotedBy(Long quotedBy) {
+        this.quotedBy = quotedBy;
+    }
+
     /**
      * @return 价格批量
      */
-	public BigDecimal getPriceBatchQuantity() {
-		return priceBatchQuantity;
-	}
+    public BigDecimal getPriceBatchQuantity() {
+        return priceBatchQuantity;
+    }
 
-	public void setPriceBatchQuantity(BigDecimal priceBatchQuantity) {
-		this.priceBatchQuantity = priceBatchQuantity;
-	}
+    public void setPriceBatchQuantity(BigDecimal priceBatchQuantity) {
+        this.priceBatchQuantity = priceBatchQuantity;
+    }
+
     /**
      * @return 承诺交货日期
      */
-	public Date getPromisedDate() {
-		return promisedDate;
-	}
+    public Date getPromisedDate() {
+        return promisedDate;
+    }
 
-	public void setPromisedDate(Date promisedDate) {
-		this.promisedDate = promisedDate;
-	}
+    public void setPromisedDate(Date promisedDate) {
+        this.promisedDate = promisedDate;
+    }
+
     /**
      * @return 供货周期
      */
-	public String getDeliveryCycle() {
-		return deliveryCycle;
-	}
+    public String getDeliveryCycle() {
+        return deliveryCycle;
+    }
 
-	public void setDeliveryCycle(String deliveryCycle) {
-		this.deliveryCycle = deliveryCycle;
-	}
+    public void setDeliveryCycle(String deliveryCycle) {
+        this.deliveryCycle = deliveryCycle;
+    }
+
     /**
      * @return 报价有效期从
      */
-	public Date getQuotationExpiryDateFrom() {
-		return quotationExpiryDateFrom;
-	}
+    public Date getQuotationExpiryDateFrom() {
+        return quotationExpiryDateFrom;
+    }
 
-	public void setQuotationExpiryDateFrom(Date quotationExpiryDateFrom) {
-		this.quotationExpiryDateFrom = quotationExpiryDateFrom;
-	}
+    public void setQuotationExpiryDateFrom(Date quotationExpiryDateFrom) {
+        this.quotationExpiryDateFrom = quotationExpiryDateFrom;
+    }
+
     /**
      * @return 报价有效期至
      */
-	public Date getQuotationExpiryDateTo() {
-		return quotationExpiryDateTo;
-	}
+    public Date getQuotationExpiryDateTo() {
+        return quotationExpiryDateTo;
+    }
 
-	public void setQuotationExpiryDateTo(Date quotationExpiryDateTo) {
-		this.quotationExpiryDateTo = quotationExpiryDateTo;
-	}
+    public void setQuotationExpiryDateTo(Date quotationExpiryDateTo) {
+        this.quotationExpiryDateTo = quotationExpiryDateTo;
+    }
+
     /**
      * @return 还价标志
      */
-	public Integer getBargainFlag() {
-		return bargainFlag;
-	}
+    public Integer getBargainFlag() {
+        return bargainFlag;
+    }
 
-	public void setBargainFlag(Integer bargainFlag) {
-		this.bargainFlag = bargainFlag;
-	}
+    public void setBargainFlag(Integer bargainFlag) {
+        this.bargainFlag = bargainFlag;
+    }
+
     /**
      * @return 还价时间
      */
-	public Date getBargainDate() {
-		return bargainDate;
-	}
+    public Date getBargainDate() {
+        return bargainDate;
+    }
 
-	public void setBargainDate(Date bargainDate) {
-		this.bargainDate = bargainDate;
-	}
+    public void setBargainDate(Date bargainDate) {
+        this.bargainDate = bargainDate;
+    }
+
     /**
      * @return 还价人
      */
-	public Long getBargainBy() {
-		return bargainBy;
-	}
+    public Long getBargainBy() {
+        return bargainBy;
+    }
 
-	public void setBargainBy(Long bargainBy) {
-		this.bargainBy = bargainBy;
-	}
+    public void setBargainBy(Long bargainBy) {
+        this.bargainBy = bargainBy;
+    }
+
     /**
      * @return 还价数量
      */
-	public BigDecimal getBargainQuantity() {
-		return bargainQuantity;
-	}
+    public BigDecimal getBargainQuantity() {
+        return bargainQuantity;
+    }
 
-	public void setBargainQuantity(BigDecimal bargainQuantity) {
-		this.bargainQuantity = bargainQuantity;
-	}
+    public void setBargainQuantity(BigDecimal bargainQuantity) {
+        this.bargainQuantity = bargainQuantity;
+    }
+
     /**
      * @return 还价单价
      */
-	public BigDecimal getBargainPrice() {
-		return bargainPrice;
-	}
+    public BigDecimal getBargainPrice() {
+        return bargainPrice;
+    }
 
-	public void setBargainPrice(BigDecimal bargainPrice) {
-		this.bargainPrice = bargainPrice;
-	}
+    public void setBargainPrice(BigDecimal bargainPrice) {
+        this.bargainPrice = bargainPrice;
+    }
+
     /**
      * @return 还价理由
      */
-	public String getBargainRemark() {
-		return bargainRemark;
-	}
+    public String getBargainRemark() {
+        return bargainRemark;
+    }
 
-	public void setBargainRemark(String bargainRemark) {
-		this.bargainRemark = bargainRemark;
-	}
+    public void setBargainRemark(String bargainRemark) {
+        this.bargainRemark = bargainRemark;
+    }
 
 }

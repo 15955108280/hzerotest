@@ -152,7 +152,8 @@ public class LineItem extends AuditDomain {
     private Integer ladderInquiryFlag;
     @ApiModelProperty(value = "附件UUID")
     private String attachmentUuid;
-    @ApiModelProperty(value = "询价单选择策略SSRC.RFX_ SELECTION_STRATEGY(RECOMMENDATION/推荐供应商| RELEASE/释放采购申请| CANCEL/不释放采购申请)")
+    @ApiModelProperty(
+                    value = "询价单选择策略SSRC.RFX_ SELECTION_STRATEGY(RECOMMENDATION/推荐供应商| RELEASE/释放采购申请| CANCEL/不释放采购申请)")
     private String selectionStrategy;
     @ApiModelProperty(value = "延时次数", required = true)
     @NotNull

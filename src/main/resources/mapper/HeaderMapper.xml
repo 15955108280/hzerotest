@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="org.hzero.test1.infra.mapper.HeaderMapper">
-	<!-- 可根据自己的需求，是否要使用 -->
+    <!-- 可根据自己的需求，是否要使用 -->
     <resultMap id="BaseResultMap" type="org.hzero.test1.domain.entity.Header">
         <result column="rfx_header_id" property="rfxHeaderId" jdbcType="DECIMAL"/>
         <result column="tenant_id" property="tenantId" jdbcType="DECIMAL"/>
@@ -74,8 +74,8 @@
 
     <select id="getTenantId" parameterType="java.lang.Long" resultType="java.lang.Long">
         select
-            tenant_id from ssrc_rfx_header
+        tenant_id from ssrc_rfx_header
         where
-            tenant_id = #{tenantId}
+        tenant_id = #{tenantId}
     </select>
 </mapper>

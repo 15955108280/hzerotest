@@ -16,11 +16,11 @@ import java.util.List;
  */
 @Component
 public class LineItemRepositoryImpl extends BaseRepositoryImpl<LineItem> implements LineItemRepository {
-	@Autowired
-	LineItemMapper lineItemMapper;
+    @Autowired
+    LineItemMapper lineItemMapper;
 
-	@Override
-	public Long getTenantId(Long tenantId) {
-		return lineItemMapper.getTenantId(tenantId);
-	}
+    @Override
+    public Long getTenantId(Long tenantId) {
+        return lineItemMapper.getTenantId(tenantId);
+    }
 }

@@ -23,6 +23,8 @@ import io.choerodon.swagger.annotation.Permission;
 import io.swagger.annotations.ApiOperation;
 import springfox.documentation.annotations.ApiIgnore;
 
+import java.util.List;
+
 /**
  * 询价单物料行管理 API
  *
@@ -85,11 +87,10 @@ public class LineItemController extends BaseController {
 
     @ApiOperation(value = "物料行分配")
     @Permission(level = ResourceLevel.ORGANIZATION)
-    @PostMapping
-    public ResponseEntity<?> assignLineItem(
+    @PostMapping("/assign")
+    public ResponseEntity<List<ItemSupAssign>> assignLineItem(
                     @ApiParam(value = "租户id", required = true) @PathVariable("organizationId") Long tenantId,
-                    @RequestBody ItemSupAssign itemSupAssign) {
-        itemSupAssign.setTenantId(tenantId);
-        return Results.success( itemSupAssignService.assignLineItem(itemSupAssign));
+                    @RequestBody List<ItemSupAssign> itemSupAssignList) {
+        return Results.success(itemSupAssignService.assignLineItem(itemSupAssignList, tenantId));
     }
 }

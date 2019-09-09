@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http:www.//mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="org.hzero.supplier.infra.mapper.QuotationLineMapper">
-	<!-- 可根据自己的需求，是否要使用 -->
+    <!-- 可根据自己的需求，是否要使用 -->
     <resultMap id="BaseResultMap" type="org.hzero.test1.domain.entity.QuotationLine">
         <result column="quotation_line_id" property="quotationLineId" jdbcType="DECIMAL"/>
         <result column="quotation_header_id" property="quotationHeaderId" jdbcType="DECIMAL"/>
@@ -63,4 +63,13 @@
         <result column="rank" property="rank" jdbcType="DECIMAL"/>
         <result column="trend_flag" property="trendFlag" jdbcType="DECIMAL"/>
     </resultMap>
+    <select id="selectVersionNumber" resultType="java.lang.Long">
+        select
+        object_version_number
+        from
+        ssrc_rfx_quotation_line
+        where
+        tenant_id = #{tenantId}
+        and quotation_header_id = #{quotationLineId}
+    </select>
 </mapper>

@@ -33,8 +33,9 @@ public class LineSupplierController extends BaseController {
     @ApiOperation(value = "询价单供应商行列表")
     @Permission(level = ResourceLevel.ORGANIZATION)
     @GetMapping
-    public ResponseEntity<Page<LineSupplier>> list(LineSupplier lineSupplier, @ApiIgnore @SortDefault(value = LineSupplier.FIELD_RFX_LINE_SUPPLIER_ID,
-            direction = Sort.Direction.DESC) PageRequest pageRequest) {
+    public ResponseEntity<Page<LineSupplier>> list(LineSupplier lineSupplier,
+                    @ApiIgnore @SortDefault(value = LineSupplier.FIELD_RFX_LINE_SUPPLIER_ID,
+                                    direction = Sort.Direction.DESC) PageRequest pageRequest) {
         Page<LineSupplier> list = lineSupplierRepository.pageAndSort(pageRequest, lineSupplier);
         return Results.success(list);
     }

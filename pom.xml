@@ -105,7 +105,12 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-
+        <!--文件导出-->
+        <dependency>
+            <groupId>org.hzero.starter</groupId>
+            <artifactId>hzero-starter-export</artifactId>
+            <version>${hzero.starter.version}</version>
+        </dependency>
     </dependencies>
 
     <repositories>

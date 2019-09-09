@@ -13,17 +13,18 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class HeaderDoMainServiceImpl implements HeaderDoMainService {
-	@Autowired
-	HeaderRepository headerRepository;
-	@Override
-	public Boolean headerIsNull(Long tenantId, Long rfxHeaderId) {
-		Header header = new Header(tenantId, rfxHeaderId);
-		return headerRepository.selectOne(header) != null;
-	}
+    @Autowired
+    HeaderRepository headerRepository;
 
-	@Override
-	public Boolean lineItemIsNull(Long tenantId, Long lineItemId) {
-		Header header = new Header(tenantId, lineItemId);
-		return headerRepository.selectOne(header) != null;
-	}
+    @Override
+    public Boolean headerIsNull(Long tenantId, Long rfxHeaderId) {
+        Header header = new Header(tenantId, rfxHeaderId);
+        return headerRepository.selectOne(header) != null;
+    }
+
+    @Override
+    public Boolean lineItemIsNull(Long tenantId, Long lineItemId) {
+        Header header = new Header(tenantId, lineItemId);
+        return headerRepository.selectOne(header) != null;
+    }
 }

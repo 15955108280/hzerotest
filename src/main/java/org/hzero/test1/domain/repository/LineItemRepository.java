@@ -12,11 +12,12 @@ import org.hzero.test1.domain.entity.LineItem;
 public interface LineItemRepository extends BaseRepository<LineItem> {
 
 
-	/**
-	 * 查询租户id
-	 * @param tenantId 租户id
-	 * @return 租户id
-	 */
-	Long getTenantId(Long tenantId);
+    /**
+     * 查询租户id
+     * 
+     * @param tenantId 租户id
+     * @return 租户id
+     */
+    Long getTenantId(Long tenantId);
 
 }

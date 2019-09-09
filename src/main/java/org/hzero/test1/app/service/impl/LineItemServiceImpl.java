@@ -16,15 +16,15 @@ import org.springframework.util.Assert;
  */
 @Service
 public class LineItemServiceImpl implements LineItemService {
-	@Autowired
-	LineItemRepository lineItemRepository;
-	@Autowired
-	HeaderDoMainService headerDoMainService;
+    @Autowired
+    LineItemRepository lineItemRepository;
+    @Autowired
+    HeaderDoMainService headerDoMainService;
 
-	@Override
-	public void deleteLineItem(Long tenantId, Long rfxHeaderId) {
-		Assert.isTrue(headerDoMainService.headerIsNull(tenantId,rfxHeaderId), Instance.ERROR_HEADER_NOT_FOUND);
-		LineItem lineItem = new LineItem(rfxHeaderId);
-		lineItemRepository.delete(lineItem);
-	}
+    @Override
+    public void deleteLineItem(Long tenantId, Long rfxHeaderId) {
+        Assert.isTrue(headerDoMainService.headerIsNull(tenantId, rfxHeaderId), Instance.ERROR_HEADER_NOT_FOUND);
+        LineItem lineItem = new LineItem(rfxHeaderId);
+        lineItemRepository.delete(lineItem);
+    }
 }

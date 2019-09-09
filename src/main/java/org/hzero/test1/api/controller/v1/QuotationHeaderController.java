@@ -33,8 +33,9 @@ public class QuotationHeaderController extends BaseController {
     @ApiOperation(value = "报价单头表列表")
     @Permission(level = ResourceLevel.ORGANIZATION)
     @GetMapping
-    public ResponseEntity<Page<QuotationHeader>> list(QuotationHeader quotationHeader, @ApiIgnore @SortDefault(value = QuotationHeader.FIELD_QUOTATION_HEADER_ID,
-            direction = Sort.Direction.DESC) PageRequest pageRequest) {
+    public ResponseEntity<Page<QuotationHeader>> list(QuotationHeader quotationHeader,
+                    @ApiIgnore @SortDefault(value = QuotationHeader.FIELD_QUOTATION_HEADER_ID,
+                                    direction = Sort.Direction.DESC) PageRequest pageRequest) {
         Page<QuotationHeader> list = quotationHeaderRepository.pageAndSort(pageRequest, quotationHeader);
         return Results.success(list);
     }

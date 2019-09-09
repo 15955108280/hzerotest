@@ -50,27 +50,27 @@ public class Action extends AuditDomain {
     @Id
     @GeneratedValue
     private Long rfxActionId;
-    @ApiModelProperty(value = "发票头ID",required = true)
+    @ApiModelProperty(value = "发票头ID", required = true)
     @NotNull
     private Long rfxHeaderId;
-    @ApiModelProperty(value = "租户ID",required = true)
+    @ApiModelProperty(value = "租户ID", required = true)
     @NotNull
     private Long tenantId;
-    @ApiModelProperty(value = "处理人",required = true)
+    @ApiModelProperty(value = "处理人", required = true)
     @NotNull
     private Long processUserId;
-    @ApiModelProperty(value = "询价单状态SSRC.RFX_STATUS",required = true)
+    @ApiModelProperty(value = "询价单状态SSRC.RFX_STATUS", required = true)
     @NotBlank
     private String processStatus;
-    @ApiModelProperty(value = "处理日期",required = true)
+    @ApiModelProperty(value = "处理日期", required = true)
     @NotNull
     private Date processDate;
-   @ApiModelProperty(value = "处理消息")    
+    @ApiModelProperty(value = "处理消息")
     private String processRemark;
-   @ApiModelProperty(value = "询价单操作SSRC.RFX_OPERATION")    
+    @ApiModelProperty(value = "询价单操作SSRC.RFX_OPERATION")
     private String processOperation;
 
-	//
+    //
     // 非数据库字段
     // ------------------------------------------------------------------------------
 
@@ -79,84 +79,91 @@ public class Action extends AuditDomain {
     // ------------------------------------------------------------------------------
 
     /**
-     * @return 
+     * @return
      */
-	public Long getRfxActionId() {
-		return rfxActionId;
-	}
+    public Long getRfxActionId() {
+        return rfxActionId;
+    }
 
-	public void setRfxActionId(Long rfxActionId) {
-		this.rfxActionId = rfxActionId;
-	}
+    public void setRfxActionId(Long rfxActionId) {
+        this.rfxActionId = rfxActionId;
+    }
+
     /**
      * @return 发票头ID
      */
-	public Long getRfxHeaderId() {
-		return rfxHeaderId;
-	}
+    public Long getRfxHeaderId() {
+        return rfxHeaderId;
+    }
 
-	public void setRfxHeaderId(Long rfxHeaderId) {
-		this.rfxHeaderId = rfxHeaderId;
-	}
+    public void setRfxHeaderId(Long rfxHeaderId) {
+        this.rfxHeaderId = rfxHeaderId;
+    }
+
     /**
      * @return 租户ID
      */
-	public Long getTenantId() {
-		return tenantId;
-	}
+    public Long getTenantId() {
+        return tenantId;
+    }
 
-	public void setTenantId(Long tenantId) {
-		this.tenantId = tenantId;
-	}
+    public void setTenantId(Long tenantId) {
+        this.tenantId = tenantId;
+    }
+
     /**
      * @return 处理人
      */
-	public Long getProcessUserId() {
-		return processUserId;
-	}
+    public Long getProcessUserId() {
+        return processUserId;
+    }
 
-	public void setProcessUserId(Long processUserId) {
-		this.processUserId = processUserId;
-	}
+    public void setProcessUserId(Long processUserId) {
+        this.processUserId = processUserId;
+    }
+
     /**
      * @return 询价单状态SSRC.RFX_STATUS
      */
-	public String getProcessStatus() {
-		return processStatus;
-	}
+    public String getProcessStatus() {
+        return processStatus;
+    }
 
-	public void setProcessStatus(String processStatus) {
-		this.processStatus = processStatus;
-	}
+    public void setProcessStatus(String processStatus) {
+        this.processStatus = processStatus;
+    }
+
     /**
      * @return 处理日期
      */
-	public Date getProcessDate() {
-		return processDate;
-	}
+    public Date getProcessDate() {
+        return processDate;
+    }
 
-	public void setProcessDate(Date processDate) {
-		this.processDate = processDate;
-	}
+    public void setProcessDate(Date processDate) {
+        this.processDate = processDate;
+    }
+
     /**
      * @return 处理消息
      */
-	public String getProcessRemark() {
-		return processRemark;
-	}
+    public String getProcessRemark() {
+        return processRemark;
+    }
 
-	public void setProcessRemark(String processRemark) {
-		this.processRemark = processRemark;
-	}
+    public void setProcessRemark(String processRemark) {
+        this.processRemark = processRemark;
+    }
+
     /**
      * @return 询价单操作SSRC.RFX_OPERATION
      */
-	public String getProcessOperation() {
-		return processOperation;
-	}
+    public String getProcessOperation() {
+        return processOperation;
+    }
 
-	public void setProcessOperation(String processOperation) {
-		this.processOperation = processOperation;
-	}
+    public void setProcessOperation(String processOperation) {
+        this.processOperation = processOperation;
+    }
 
 }

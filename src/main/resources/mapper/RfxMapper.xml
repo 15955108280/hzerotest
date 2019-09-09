@@ -70,6 +70,12 @@
         from ssrc_rfx_header h, ssrc_rfx_line_supplier s
         where
             h.rfx_header_id = s.rfx_header_id
-            and q.supplier_tenant_id = #{tenantId}
+            and s.supplier_tenant_id = #{tenantId}
+    </select>
+    <select id="exportRfx" resultType="org.hzero.test1.api.dto.ExportDTO">
+        select *
+        from ssrc_rfx_header h
+        where tenant_id = #{tenantId}
+        and rfx_header_id = #{rfxHeaderId}
     </select>
 </mapper>

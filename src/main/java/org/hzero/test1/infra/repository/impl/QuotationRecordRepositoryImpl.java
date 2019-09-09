@@ -11,7 +11,8 @@ import org.springframework.stereotype.Component;
  * @author xingpeng.yang@hand-china.com 2019-09-02 13:40:49
  */
 @Component
-public class QuotationRecordRepositoryImpl extends BaseRepositoryImpl<QuotationRecord> implements QuotationRecordRepository {
+public class QuotationRecordRepositoryImpl extends BaseRepositoryImpl<QuotationRecord>
+                implements QuotationRecordRepository {
 
-  
+
 }

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.hzero.test1.infra.mapper.QuotationMapper">
+    <select id="listQuotation" resultType="org.hzero.test1.api.dto.QuotationSummaryDTO">
+        select
+        i.rfx_header_id, i.item_code,i.item_name, i.rfx_quantity,
+        l.quotation_line_status,l.current_quotation_price,l.tax_included_flag,l.tax_rate
+        from
+        ssrc_rfx_quotation_line l,
+        ssrc_rfx_line_item i,
+        ssrc_rfx_quotation_header h
+        where
+        i.rfx_line_item_id = l.rfx_line_item_id
+        and h.quotation_header_id = l.quotation_header_id
+        and l.tenant_id = #{tenantId}
+        and i.tenant_id = #{tenantId}
+        and h.supplier_company_id = #{supplierCompanyId}
+    </select>
+</mapper>

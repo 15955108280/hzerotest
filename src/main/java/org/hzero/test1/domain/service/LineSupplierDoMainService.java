@@ -9,6 +9,24 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public interface LineSupplierDoMainService {
+    /**
+     * 判断供应商是否已经存在
+     * 
+     * @param tenantId 租户id
+     * @param supplierCompanyId 供应商租户id
+     * @param rfxHeaderId 询价单头id
+     * @return 是否存在
+     */
+    Boolean lineSupplierIsNull(Long tenantId, Long supplierCompanyId, Long rfxHeaderId);
 
-	Boolean lineSupplierIsNull(Long tenantId,Long rfxLineSupplierId);
+    /**
+     * 判断供应商是否已经存在
+     *
+     * @param tenantId 租户id
+     * @param rfxLineSupplierId 供应商租户id
+     * @return 是否存在
+     */
+    Boolean lineSupplierIsNull(Long tenantId, Long rfxLineSupplierId);
+
+
 }

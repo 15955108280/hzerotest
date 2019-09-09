@@ -13,5 +13,5 @@ import org.springframework.stereotype.Component;
 @Component
 public class LineSupplierRepositoryImpl extends BaseRepositoryImpl<LineSupplier> implements LineSupplierRepository {
 
-  
+
 }

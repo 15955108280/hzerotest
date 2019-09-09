@@ -11,79 +11,76 @@ import java.util.List;
  * @author YXP 2019/08/26 12:28
  */
 public class RfxSummaryDTO {
-	private Long rfxHeaderId;
-	private String rfxNum;
-	private String rfxStatus;
-	private String rfxTitle;
-	@LovValue(lovCode = "SSRC.SOURCE_AUCTION_DIRECTION",meaningField="auctionDirectionMeaning")
-	private String auctionDirection;
-	private String auctionDirectionMeaning;
-	private List<ItemSummaryDTO> itemSummaryDTOList;
-	public String getAuctionDirectionMeaning() {
-		return auctionDirectionMeaning;
-	}
+    private Long rfxHeaderId;
+    private String rfxNum;
+    private String rfxStatus;
+    private String rfxTitle;
+    @LovValue(lovCode = "SSRC.SOURCE_AUCTION_DIRECTION", meaningField = "auctionDirectionMeaning")
+    private String auctionDirection;
+    private String auctionDirectionMeaning;
+    private List<ItemSummaryDTO> itemSummaryList;
 
-	public void setAuctionDirectionMeaning(String auctionDirectionMeaning) {
-		this.auctionDirectionMeaning = auctionDirectionMeaning;
-	}
-	public Long getRfxHeaderId() {
-		return rfxHeaderId;
-	}
+    public String getAuctionDirectionMeaning() {
+        return auctionDirectionMeaning;
+    }
 
-	public void setRfxHeaderId(Long rfxHeaderId) {
-		this.rfxHeaderId = rfxHeaderId;
-	}
+    public void setAuctionDirectionMeaning(String auctionDirectionMeaning) {
+        this.auctionDirectionMeaning = auctionDirectionMeaning;
+    }
 
-	public String getRfxNum() {
-		return rfxNum;
-	}
+    public Long getRfxHeaderId() {
+        return rfxHeaderId;
+    }
 
-	public void setRfxNum(String rfxNum) {
-		this.rfxNum = rfxNum;
-	}
+    public void setRfxHeaderId(Long rfxHeaderId) {
+        this.rfxHeaderId = rfxHeaderId;
+    }
 
-	public String getRfxStatus() {
-		return rfxStatus;
-	}
+    public String getRfxNum() {
+        return rfxNum;
+    }
 
-	public void setRfxStatus(String rfxStatus) {
-		this.rfxStatus = rfxStatus;
-	}
+    public void setRfxNum(String rfxNum) {
+        this.rfxNum = rfxNum;
+    }
 
-	public String getRfxTitle() {
-		return rfxTitle;
-	}
+    public String getRfxStatus() {
+        return rfxStatus;
+    }
 
-	public void setRfxTitle(String rfxTitle) {
-		this.rfxTitle = rfxTitle;
-	}
+    public void setRfxStatus(String rfxStatus) {
+        this.rfxStatus = rfxStatus;
+    }
 
-	public String getAuctionDirection() {
-		return auctionDirection;
-	}
+    public String getRfxTitle() {
+        return rfxTitle;
+    }
 
-	public void setAuctionDirection(String auctionDirection) {
-		this.auctionDirection = auctionDirection;
-	}
+    public void setRfxTitle(String rfxTitle) {
+        this.rfxTitle = rfxTitle;
+    }
 
-	public List<ItemSummaryDTO> getItemSummaryDTOList() {
-		return itemSummaryDTOList;
-	}
+    public String getAuctionDirection() {
+        return auctionDirection;
+    }
 
-	public void setItemSummaryDTOList(List<ItemSummaryDTO> itemSummaryDTOList) {
-		this.itemSummaryDTOList = itemSummaryDTOList;
-	}
+    public void setAuctionDirection(String auctionDirection) {
+        this.auctionDirection = auctionDirection;
+    }
 
-	@Override
-	public String toString() {
-		return "RfxSummaryDTO{" +
-				"HeaderId=" + rfxHeaderId +
-				", rfxNum='" + rfxNum + '\'' +
-				", rfxStatus='" + rfxStatus + '\'' +
-				", rfxTitle='" + rfxTitle + '\'' +
-				", auctionDirection='" + auctionDirection + '\'' +
-				", itemSummaryDTOList=" + itemSummaryDTOList +
-				'}';
-	}
+    public List<ItemSummaryDTO> getItemSummaryList() {
+        return itemSummaryList;
+    }
+
+    public void setItemSummaryList(List<ItemSummaryDTO> itemSummaryList) {
+        this.itemSummaryList = itemSummaryList;
+    }
+
+    @Override
+    public String toString() {
+        return "RfxSummaryDTO{" + "HeaderId=" + rfxHeaderId + ", rfxNum='" + rfxNum + '\'' + ", rfxStatus='" + rfxStatus
+                        + '\'' + ", rfxTitle='" + rfxTitle + '\'' + ", auctionDirection='" + auctionDirection + '\''
+                        + ", itemSummaryDTOList=" + itemSummaryList + '}';
+    }
 }
 

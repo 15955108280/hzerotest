@@ -34,7 +34,7 @@ public class ActionController extends BaseController {
     @Permission(level = ResourceLevel.ORGANIZATION)
     @GetMapping
     public ResponseEntity<Page<Action>> list(Action action, @ApiIgnore @SortDefault(value = Action.FIELD_RFX_ACTION_ID,
-            direction = Sort.Direction.DESC) PageRequest pageRequest) {
+                    direction = Sort.Direction.DESC) PageRequest pageRequest) {
         Page<Action> list = actionRepository.pageAndSort(pageRequest, action);
         return Results.success(list);
     }

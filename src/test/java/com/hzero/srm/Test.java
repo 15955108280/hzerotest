@@ -2,6 +2,7 @@ package com.hzero.srm;
 
 import org.hzero.test1.TestApplication;
 import org.hzero.test1.api.dto.RfxSummaryDTO;
+import org.hzero.test1.app.service.RfxService;
 import org.hzero.test1.domain.entity.Header;
 import org.hzero.test1.infra.mapper.HeaderMapper;
 import org.hzero.test1.infra.mapper.RfxMapper;
@@ -19,21 +20,19 @@ import java.util.List;
  * @author YXP 2019/08/26 20:14
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = {TestApplication.class,Test.class})
+@SpringBootTest(classes = {TestApplication.class, Test.class})
 public class Test {
-	@Autowired
-	RfxMapper rfxMapper;
-	@Autowired
-	HeaderMapper headerMapper;
-	@org.junit.Test
-	public void testlist() {
-//		RfxSummaryDTO rfxSummaryDTO = new RfxSummaryDTO();
-//		List list =  rfxMapper.list(rfxSummaryDTO);
-//		for (int i = 0; i < list.size(); i++) {
-//			Object o =  list.get(i);
-//			System.out.println(o.toString());
-//		}
-	}
+    @Autowired
+    RfxMapper rfxMapper;
+    @Autowired
+    HeaderMapper headerMapper;
+    @Autowired
+    RfxService rfxService;
+
+    @org.junit.Test
+    public void testlist() {
+        rfxService.publishRfx(16L, 17L);
+    }
 
 
 }

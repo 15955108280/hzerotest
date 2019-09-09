@@ -33,8 +33,9 @@ public class ItemSupAssignController extends BaseController {
     @ApiOperation(value = "询价单物料-供应商分配关系表列表")
     @Permission(level = ResourceLevel.ORGANIZATION)
     @GetMapping
-    public ResponseEntity<Page<ItemSupAssign>> list(ItemSupAssign itemSupAssign, @ApiIgnore @SortDefault(value = ItemSupAssign.FIELD_ITEM_SUP_ASSIGN_ID,
-            direction = Sort.Direction.DESC) PageRequest pageRequest) {
+    public ResponseEntity<Page<ItemSupAssign>> list(ItemSupAssign itemSupAssign,
+                    @ApiIgnore @SortDefault(value = ItemSupAssign.FIELD_ITEM_SUP_ASSIGN_ID,
+                                    direction = Sort.Direction.DESC) PageRequest pageRequest) {
         Page<ItemSupAssign> list = itemSupAssignRepository.pageAndSort(pageRequest, itemSupAssign);
         return Results.success(list);
     }

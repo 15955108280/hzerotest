@@ -16,17 +16,17 @@ import org.springframework.stereotype.Component;
 @Component
 public class HeaderRepositoryImpl extends BaseRepositoryImpl<Header> implements HeaderRepository {
 
-	@Autowired
-	HeaderMapper headerMapper;
+    @Autowired
+    HeaderMapper headerMapper;
 
-	@Override
-	public Long  insertGetId(Header header) {
-		Long rfxHeaderId = Long.valueOf(headerMapper.insert(header));
-		return header.getRfxHeaderId();
-	}
+    @Override
+    public Long insertGetId(Header header) {
+        Long rfxHeaderId = Long.valueOf(headerMapper.insert(header));
+        return header.getRfxHeaderId();
+    }
 
-	@Override
-	public Long getTenantId(Long tenantId) {
-		return headerMapper.getTenantId(tenantId);
-	}
+    @Override
+    public Long getTenantId(Long tenantId) {
+        return headerMapper.getTenantId(tenantId);
+    }
 }

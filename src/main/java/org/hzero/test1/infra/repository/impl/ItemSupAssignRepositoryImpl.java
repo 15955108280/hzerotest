@@ -13,5 +13,5 @@ import org.springframework.stereotype.Component;
 @Component
 public class ItemSupAssignRepositoryImpl extends BaseRepositoryImpl<ItemSupAssign> implements ItemSupAssignRepository {
 
-  
+
 }
