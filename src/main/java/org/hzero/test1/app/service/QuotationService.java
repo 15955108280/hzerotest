@@ -26,5 +26,5 @@ public interface QuotationService {
      * @param submitPriceDTO 保存信息
      * @return 报价单提交信息
      */
-    QuotationLine submitQuotation(Long tenantId, SubmitPriceDTO submitPriceDTO);
+    QuotationLine submitQuotation(Long tenantId,Long supplierCompanyId, SubmitPriceDTO submitPriceDTO);
 }

@@ -48,7 +48,9 @@ public class QueryDTO {
     public QueryDTO(Long tenantId) {
         this.tenantId = tenantId;
     }
+    public  QueryDTO(){
 
+    }
     public Long getRfxHeaderId() {
         return rfxHeaderId;
     }

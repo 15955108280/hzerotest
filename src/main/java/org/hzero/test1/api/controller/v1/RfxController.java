@@ -30,7 +30,6 @@ import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
 import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -65,7 +64,6 @@ public class RfxController {
                     QueryDTO queryDTO, @ApiIgnore PageRequest pageRequest) {
         return Results.success(rfxService.listLineItem(pageRequest, queryDTO, tenantId));
     }
-
     @ApiOperation(value = "新增询价")
     @Permission(level = ResourceLevel.ORGANIZATION)
     @PostMapping

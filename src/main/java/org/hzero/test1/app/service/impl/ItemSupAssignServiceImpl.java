@@ -65,7 +65,7 @@ public class ItemSupAssignServiceImpl implements ItemSupAssignService {
             BigDecimal allottedQuantity;
             allottedQuantity = BigDecimal.valueOf(0);
             for (QuotationLine quotationLine : quotationLineList) {
-                allottedQuantity = allottedQuantity.add(quotationLine.getAllottedQuantity());
+                allottedQuantity = allottedQuantity.add(quotationLine.getAllottedQuantity()==null?BigDecimal.valueOf(0):quotationLine.getAllottedQuantity());
             }
             Assert.isTrue(lineItem.getRfxQuantity().compareTo(allottedQuantity) > 0, Instance.ERROR_QUANTITY_IS_ENOUGH);
         }

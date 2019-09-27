@@ -64,6 +64,7 @@ public class RfxServiceImpl implements RfxService {
         LineSupplier lineSupplier = lineSupplierRepository
                         .selectOne(new LineSupplier(header.getTenantId(), supplierCompanyId, header.getRfxHeaderId()));
         Assert.notNull(lineSupplier, ERROR_SUPPLIER_NOT_FOUND);
+        //判断反馈状态
         Assert.isTrue(StringUtils.equals("NEW", lineSupplier.getFeedbackStatus()),
                         ERROR_SUPPLIER_IS_PARTICIPATED_OR_ABANDONED);
         return lineSupplier;
@@ -72,9 +73,8 @@ public class RfxServiceImpl implements RfxService {
     @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public void createLineItem(RfxDTO rfxDTO, Long tenantId) {
-        Header header = new Header();
-        header.setTenantId(tenantId);
-        Long rfxHeaderId = headerRepository.insertGetId(header);
+        rfxDTO.getHeader().setTenantId(tenantId);
+        Long rfxHeaderId = headerRepository.insertGetId(rfxDTO.getHeader());
         List<LineItem> lineItemList = rfxDTO.getLineItem();
         for (LineItem lineItem : lineItemList) {
             lineItem.setRfxHeaderId(rfxHeaderId);
@@ -87,6 +87,7 @@ public class RfxServiceImpl implements RfxService {
     public LineItem updateLineItem(Long tenantId, Long rfxLineItemId, String itemRemark, String itemName) {
         Assert.isTrue(lineItemDoMainService.lineItemIsNull(tenantId, rfxLineItemId), ERROR_LINEITEM_NOT_FOUND);
         LineItem lineItem = new LineItem(rfxLineItemId, itemRemark, itemName);
+        //获取版本号
         LineItem oldLineItem = lineItemRepository.selectByPrimaryKey(lineItem);
         lineItem.setObjectVersionNumber(oldLineItem.getObjectVersionNumber());
         lineItemRepository.updateByPrimaryKeySelective(lineItem);
@@ -102,8 +103,11 @@ public class RfxServiceImpl implements RfxService {
     @Override
     public Header publishRfx(Long tenantId, Long rfxHeaderId) {
         Header header = headerRepository.selectOne(new Header(tenantId, rfxHeaderId));
+        //判断订单头是否存在
         Assert.notNull(header, ERROR_HEADER_NOT_FOUND);
+        //判断订单行是否存在
         Assert.isTrue(headerDoMainService.lineItemIsNull(tenantId, rfxHeaderId), ERROR_LINEITEM_IN_HEADER_NOT_FOUND);
+        //判断开始时间是否到达
         Assert.isTrue(header.getQuotationStartDate() != null
                         && header.getQuotationStartDate().compareTo(new Date()) < 0, ERROR_TIME_IS_NOT_ALLOWED);
         header.setRfxStatus("IN_QUOTATION");
@@ -145,6 +149,8 @@ public class RfxServiceImpl implements RfxService {
         Assert.isTrue(!lineSupplierDoMainService.lineSupplierIsNull(tenantId, lineSupplier.getSupplierCompanyId(),
                         rfxHeaderId), ERROR_SUPPLIER_NOT_FOUND);
         lineSupplier.setFeedbackStatus("NEW");
+        lineSupplier.setTenantId(tenantId);
+        lineSupplier.setRfxHeaderId(rfxHeaderId);
         lineSupplierRepository.insert(lineSupplier);
         return lineSupplier;
     }

@@ -58,12 +58,13 @@ public class QuotationController {
 
     @ApiOperation(value = "报价单提交")
     @Permission(level = ResourceLevel.ORGANIZATION)
-    @PostMapping("/submit")
+    @PostMapping("/submit/{supplierCompanyId}")
     @ProcessLovValue(targetField = BaseConstants.FIELD_BODY)
     public ResponseEntity<QuotationLine> submitQuotation(
                     @ApiParam(value = "租户", required = true) @PathVariable("organizationId") Long tenantId,
+                    @ApiParam(value = "供应商id", required = true) @PathVariable Long supplierCompanyId,
                     @RequestBody SubmitPriceDTO submitPriceDTO) {
-        return Results.success(quotationService.submitQuotation(tenantId, submitPriceDTO));
+        return Results.success(quotationService.submitQuotation(tenantId, supplierCompanyId, submitPriceDTO));
     }
 
 

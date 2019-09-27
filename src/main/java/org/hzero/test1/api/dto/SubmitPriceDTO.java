@@ -12,6 +12,7 @@ import java.util.Date;
  */
 public class SubmitPriceDTO {
     private Long quotationLineId;
+    private Long rfxHeaderId;
     private Date validPromisedDate;
     private String validDeliveryCycle;
     private Date validExpiryDateFrom;
@@ -23,6 +24,14 @@ public class SubmitPriceDTO {
     private BigDecimal validBargainQuantity;
     private BigDecimal validBargainPrice;
     private String validBargainRemark;
+
+    public Long getRfxHeaderId() {
+        return rfxHeaderId;
+    }
+
+    public void setRfxHeaderId(Long rfxHeaderId) {
+        this.rfxHeaderId = rfxHeaderId;
+    }
 
     public Long getQuotationLineId() {
         return quotationLineId;
