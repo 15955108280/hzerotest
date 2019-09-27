@@ -63,8 +63,9 @@ public class QuotationController {
     public ResponseEntity<QuotationLine> submitQuotation(
                     @ApiParam(value = "租户", required = true) @PathVariable("organizationId") Long tenantId,
                     @ApiParam(value = "供应商id", required = true) @PathVariable Long supplierCompanyId,
-                    @RequestBody SubmitPriceDTO submitPriceDTO) {
+                    @RequestBody SubmitPriceDTO submitPriceDTO) { //测试pull的冲突
         return Results.success(quotationService.submitQuotation(tenantId, supplierCompanyId, submitPriceDTO));
+
     }
 
 
